@@ -28,6 +28,8 @@ Memory allocation and stack pointer
 ### C Program to compute Sum from 1 to N
 
 ```c
+#include <stdio.h>
+
 int main () {
   int i = 0, sum = 0;
   int n = 10;
@@ -35,7 +37,15 @@ int main () {
     sum += i;
   }
   
-  printf("\nSum of number from 1 to %d = %d\n", n, sum);
+  printf("\nSum of numbers from 1 to %d = %d\n", n, sum);
   return 0;
 }
 ```
+
+```console
+gcc sumofn.c -o sumofn
+./sumofn
+```
+
+![image](https://user-images.githubusercontent.com/66086031/170158604-aeac5978-1288-4dac-95b8-744ca5fae4ab.png)
+
