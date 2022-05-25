@@ -77,3 +77,43 @@ riscv64-unknown-elf-objdump -d sumofn.o | less
 
 ![image](https://user-images.githubusercontent.com/66086031/170161041-84c37cfa-7382-4fcf-a5bb-25a3fb448e7f.png)
 
+### Spike simulation and debug
+![image](https://user-images.githubusercontent.com/66086031/170253889-8bdbdee9-0158-43e8-b87d-c421bea14e16.png)
+
+```console
+spike pk sumofn.o
+```
+This command is used for displaying the program after it gets executed by the RISC - V core.
+
+```console
+until pc 0 100b0
+```
+This command will run all the instructions until 100b0 Address
+
+```console
+reg 0 a0
+```
+This command is used for the checking the content of a register
+
+#### Debugging
+
+![image](https://user-images.githubusercontent.com/66086031/170256907-95f60649-d30e-458d-bc79-c599d7973eeb.png)
+- Here the value of the immediate 0x00021000 is loaded into the r0 register
+
+![image](https://user-images.githubusercontent.com/66086031/170257176-ff9c6f18-6356-4e15-b3bf-1aeb1f266499.png)
+
+![image](https://user-images.githubusercontent.com/66086031/170257627-b4aa36c4-b1bd-49fd-9601-6a485d12a483.png)
+- Here the value of stack pointer is decreased by -10 in hex. 
+
+
+### Number systems
+
+#### 64-bit Number system
+
+- 8 bits => 1 byte
+- 4 bytes => 1 word
+- 8 bytes => 2 words
+
+number of combinations using n bits => $2^n$
+
+
