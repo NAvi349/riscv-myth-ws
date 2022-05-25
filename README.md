@@ -27,6 +27,7 @@ Memory allocation and stack pointer
 
 ### C Program to compute Sum from 1 to N
 
+#### C Program file
 ```c
 #include <stdio.h>
 
@@ -42,10 +43,35 @@ int main () {
 }
 ```
 
+#### Command to execute
 ```console
 gcc sumofn.c -o sumofn
 ./sumofn
 ```
 
 ![image](https://user-images.githubusercontent.com/66086031/170158604-aeac5978-1288-4dac-95b8-744ca5fae4ab.png)
+
+### gcc compiler and dissassemble
+
+#### Normal speed
+```console
+riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o sumofn.o sumofn.c
+riscv64-unknown-elf-objdump -d sumofn.o | less
+```
+
+![image](https://user-images.githubusercontent.com/66086031/170160320-7aec7d5a-0efd-4d18-982e-e245aebb10a2.png)
+
+![image](https://user-images.githubusercontent.com/66086031/170161243-eb52b474-a49d-43e7-abc4-b37fab131010.png)
+
+
+Number of instructions = 
+
+#### Fast
+
+```console
+riscv64-unknown-elf-gcc -Ofast -mabi=lp64 -march=rv64i -o sumofn.o sumofn.c
+riscv64-unknown-elf-objdump -d sumofn.o | less
+```
+
+![image](https://user-images.githubusercontent.com/66086031/170161041-84c37cfa-7382-4fcf-a5bb-25a3fb448e7f.png)
 
