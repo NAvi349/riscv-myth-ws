@@ -53,6 +53,8 @@ gcc sumofn.c -o sumofn
 
 ### gcc compiler and dissassemble
 
+- Now we run the compiled code in a test RISC - V Core
+- 
 #### Normal speed
 ```console
 riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o sumofn.o sumofn.c
