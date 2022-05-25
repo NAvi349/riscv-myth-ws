@@ -31,7 +31,7 @@ Memory allocation and stack pointer
 int main () {
   int i = 0, sum = 0;
   int n = 10;
-  for (auto i = 1; i < n; ++i) {
+  for (i = 1; i < n; ++i) {
     sum += i;
   }
   
