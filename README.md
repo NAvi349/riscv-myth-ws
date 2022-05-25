@@ -116,4 +116,5 @@ This command is used for the checking the content of a register
 
 number of combinations using n bits => $2^n$
 
+![image](https://user-images.githubusercontent.com/66086031/170261974-557d798d-9f79-4484-9f3d-a4d831c9d5ce.png)
 
