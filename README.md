@@ -225,7 +225,20 @@ spike
 
 ![image](https://user-images.githubusercontent.com/66086031/170499741-88729f95-264c-4b93-9d11-c9de044a5533.png)
 
-## Labs using iverilog
+## Running c program on a test RISC-V core
 
 ![image](https://user-images.githubusercontent.com/66086031/170500540-12f8d57a-c5cf-4a6b-aaaa-441ca750c04d.png)
+
+```console
+git clone https://github.com/kunalg123/riscv_workshop_collaterals.git
+```
+
+```console
+chmod 377 rv32im.sh
+./rv32im.sh
+```
+
+- The instructions that we want to run are passed as HEX files into the RISC - V core
+
+![image](https://user-images.githubusercontent.com/66086031/170502881-b3b81525-44fd-4bf0-b972-2e8a5425dcaf.png)
 
