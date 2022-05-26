@@ -133,6 +133,7 @@ Highest number represented by 64-bit system => $(2^64) - 1$
 
 ```mermaid
 
+graph TD
 Application-Program --> Standard-Libraries
 Standard-Libraries --> Operating-System
 Operating-System --> RISC-V-Core
