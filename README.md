@@ -132,7 +132,7 @@ Highest number represented by 64-bit system => $(2^64) - 1$
 - It the interface present between the software application and the Hardware
 
 ```mermaid
-Application Program --> Standard Libraries
-Standard Libraries --> Operating System
-Operating System --> RISC - V Core
+Application-Program --> Standard-Libraries
+Standard-Libraries --> Operating-System
+Operating-System --> RISC-V-Core
 ```
