@@ -85,29 +85,30 @@ riscv64-unknown-elf-objdump -d sumofn.o | less
 
 ![image](https://user-images.githubusercontent.com/66086031/170253889-8bdbdee9-0158-43e8-b87d-c421bea14e16.png)
 
+
+This command is used for displaying the program after it gets executed by the RISC - V core.
 ```console
 spike pk sumofn.o
 ```
 
-debug code
+Debug command
 ```console
 spike pk -d sumofn.o
 
 ```
 
-This command is used for displaying the program after it gets executed by the RISC - V core.
 
+This command will run all the instructions until 100b0 Address
 ```console
 until pc 0 100b0
 ```
 
-This command will run all the instructions until 100b0 Address
-
+This command is used for the checking the content of a register
 ```console
 reg 0 a0
 ```
 
-This command is used for the checking the content of a register
+
 
 #### Debugging
 
