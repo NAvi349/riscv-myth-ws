@@ -1,16 +1,51 @@
-# Day 1 Introduction to RISC - V ISA and GNU compiler toolchain
+# Table of Contents
 
-## RISC - V ISA
+- [Table of Contents](#table-of-contents)
+  - [Day 1 Introduction to RISC - V ISA and GNU compiler toolchain](#day-1-introduction-to-risc---v-isa-and-gnu-compiler-toolchain)
+    - [RISC - V ISA](#risc---v-isa)
+      - [Intro to ISA](#intro-to-isa)
+      - [From Apps to Hardware](#from-apps-to-hardware)
+      - [Types of instruction](#types-of-instruction)
+    - [Lab for software toolchain](#lab-for-software-toolchain)
+      - [C Program to compute Sum from 1 to N](#c-program-to-compute-sum-from-1-to-n)
+        - [C code](#c-code)
+        - [Command to execute](#command-to-execute)
+      - [gcc compiler and dissassemble](#gcc-compiler-and-dissassemble)
+        - [Normal speed](#normal-speed)
+        - [Fast](#fast)
+      - [Spike simulation and debug](#spike-simulation-and-debug)
+        - [Debugging](#debugging)
+    - [Number systems](#number-systems)
+      - [64-bit Number system](#64-bit-number-system)
+      - [Signed number representation](#signed-number-representation)
+      - [Lab for signed and unsigned magnitude](#lab-for-signed-and-unsigned-magnitude)
+  - [Day 2 - Application Binary Interface and verification flow](#day-2---application-binary-interface-and-verification-flow)
+    - [Application Binary Interface (ABI)](#application-binary-interface-abi)
+      - [Intro to ABI](#intro-to-abi)
+      - [Memory Allocation for double words](#memory-allocation-for-double-words)
+      - [Load, Add and Store instructions](#load-add-and-store-instructions)
+      - [RV64I registers and their ABI Names](#rv64i-registers-and-their-abi-names)
+    - [Labs using ABI function call](#labs-using-abi-function-call)
+      - [Sum of N numbers Flowchart](#sum-of-n-numbers-flowchart)
+      - [Assembly Function Call](#assembly-function-call)
+        - [Assembly code for the sum of N](#assembly-code-for-the-sum-of-n)
+        - [C program to call the assembly code](#c-program-to-call-the-assembly-code)
+        - [Compiling through a RISC-V core](#compiling-through-a-risc-v-core)
+    - [Passing the C program as a HEX file](#passing-the-c-program-as-a-hex-file)
 
-### Intro to ISA
+## Day 1 Introduction to RISC - V ISA and GNU compiler toolchain
 
-### From Apps to Hardware
+### RISC - V ISA
+
+#### Intro to ISA
+
+#### From Apps to Hardware
 
 ![image](https://user-images.githubusercontent.com/66086031/170155862-83e9b749-9fd6-4593-a5f5-060e611b821c.png)
 
 ![image](https://user-images.githubusercontent.com/66086031/170156160-42bde070-abf6-40fa-9129-90990ed01bf2.png)
 
-### Types of instruction
+#### Types of instruction
 
 ![image](https://user-images.githubusercontent.com/66086031/170157205-900b1cd7-273c-41f3-a71a-00f73292c588.png)
 
@@ -23,11 +58,11 @@
 Application Binary Interface - System calls through which the programmers can access the registers of the RISC - V Core
 Memory allocation and stack pointer
 
-## Labs
+### Lab for software toolchain
 
-### C Program to compute Sum from 1 to N
+#### C Program to compute Sum from 1 to N
 
-#### C Program file
+##### C code
 
 ```c
 #include <stdio.h>
@@ -44,7 +79,7 @@ int main () {
 }
 ```
 
-#### Command to execute
+##### Command to execute
 
 ```console
 gcc sumofn.c -o sumofn
@@ -53,13 +88,11 @@ gcc sumofn.c -o sumofn
 
 ![image](https://user-images.githubusercontent.com/66086031/170158604-aeac5978-1288-4dac-95b8-744ca5fae4ab.png)
 
-### gcc compiler and dissassemble
+#### gcc compiler and dissassemble
 
 - Now we run the compiled code in a test RISC - V Core
 
--
-
-#### Normal speed
+##### Normal speed
 
 ```console
 riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o sumofn.o sumofn.c
@@ -72,7 +105,7 @@ riscv64-unknown-elf-objdump -d sumofn.o | less
 
 Number of instructions =
 
-#### Fast
+##### Fast
 
 ```console
 riscv64-unknown-elf-gcc -Ofast -mabi=lp64 -march=rv64i -o sumofn.o sumofn.c
@@ -81,36 +114,36 @@ riscv64-unknown-elf-objdump -d sumofn.o | less
 
 ![image](https://user-images.githubusercontent.com/66086031/170161041-84c37cfa-7382-4fcf-a5bb-25a3fb448e7f.png)
 
-### Spike simulation and debug
+#### Spike simulation and debug
 
 ![image](https://user-images.githubusercontent.com/66086031/170253889-8bdbdee9-0158-43e8-b87d-c421bea14e16.png)
 
-
 This command is used for displaying the program after it gets executed by the RISC - V core.
+
 ```console
 spike pk sumofn.o
 ```
 
 Debug command
+
 ```console
 spike pk -d sumofn.o
 
 ```
 
-
 This command will run all the instructions until 100b0 Address
+
 ```console
 until pc 0 100b0
 ```
 
 This command is used for the checking the content of a register
+
 ```console
 reg 0 a0
 ```
 
-
-
-#### Debugging
+##### Debugging
 
 ![image](https://user-images.githubusercontent.com/66086031/170256907-95f60649-d30e-458d-bc79-c599d7973eeb.png)
 
@@ -140,15 +173,15 @@ Highest number represented by 64-bit system => $(2^64) - 1$
 
 #### Lab for signed and unsigned magnitude
 
-# Day 2 - Application Binary Interface and verification flow
+## Day 2 - Application Binary Interface and verification flow
 
-## Application Binary Interface (ABI)
+### Application Binary Interface (ABI)
 
-### Intro to ABI
+#### Intro to ABI
 
 ![image](https://user-images.githubusercontent.com/66086031/170488080-6818b07f-3ae7-4da8-b7d3-86a21550b442.png)
 
-- ABI the interface present between the software application and the registers of the ISA
+- ABI is the system-call interface present between the software application and the registers of the ISA
 - It can be used to access the registers through system calls
 
 ```mermaid
@@ -163,14 +196,14 @@ A -->|ABI| RISC-V-Core
 
 - There are 32 registers each of 64 bits in the RV64.
 
-### Memory Allocation for double words
+#### Memory Allocation for double words
 
 - Memory is **byte-addressable**
 - Each address contains 8 - bits (i.e.) - 1 byte
 - RISC - V follows little-endian memory system.
 - MSB bits have higher memory address and LSB have lower memory address
 
-### Load, Add and Store instructions
+#### Load, Add and Store instructions
 
 ![image](https://user-images.githubusercontent.com/66086031/170492880-2ef99afb-8015-4c07-8dc4-bfab27c1540c.png)
 
@@ -180,24 +213,39 @@ A -->|ABI| RISC-V-Core
 
 ![image](https://user-images.githubusercontent.com/66086031/170493491-a7b70b35-fe83-439d-979c-0bedc71edf81.png)
 
-### RV64I registers and their ABI Names
+#### RV64I registers and their ABI Names
 
-- Load, add and store belong to RV64I base instructions.
+- Load, add and store belong to $RV64I$ base instructions.
 - Load is a I-type instruction
 - Add is a R-type instruction
 - Store is a S-type instruction
-- rd is of size 5 bits => So $2^5 = 32$ registers
-- Naming convention is x0 - x31
+- $rd$ is of size 5 bits => So $2^5 = 32$ registers
+- Naming convention is $x0$ to $x31$
 
 ![image](https://user-images.githubusercontent.com/66086031/170494227-79438b1a-17ec-41e5-9ea8-dce2746424e2.png)
 
-## Labs using ABI function call
+### Labs using ABI function call
 
-### Sum of N numbers Flowchart
+#### Sum of N numbers Flowchart
 
-![image](https://user-images.githubusercontent.com/66086031/170495257-401375e5-7cd8-4fbd-b2a6-482af8bf3815.png)
+```mermaid
+graph TD;
+S[Start a0 = 0, a1 = count] --> M[temp variable, a4 = 0]
+M --> R[incrementing variable, a3 = 0]
+R --> N[Store count in a2]
+N --> Q[a4 = a3 + a4]
+Q --> I[a3 = a3 + 1]
+I --> D{Is a3 < a2 ?}
+D -->|yes| Q
+D -->|no| F[a0 = a4 + zero]
+F --> End
+```
 
-### Assembly code for sum of N numbers
+- Value of a0 is returned to the main program.
+
+#### Assembly Function Call
+
+##### Assembly code for the sum of N
 
 ```assembly
 .section .text
@@ -217,7 +265,7 @@ loop:
   ret  
 ```
 
-#### C program to call the assembly code
+##### C program to call the assembly code
 
 ```c
 #include <stdio.h>
@@ -235,18 +283,24 @@ int main () {
 
 ![image](https://user-images.githubusercontent.com/66086031/170498879-1920ab36-96c5-41c2-b347-5423c969d997.png)
 
-#### Debug the code
+##### Compiling through a RISC-V core
 
 ```console
 riscv64-unknown-elf-gcc -Ofast -mabi=lp64 -march=rv64i -o sumof_N.o sumof_N.c load.S
-spike
+spike pk sumof_N.o
 ```
 
 ![image](https://user-images.githubusercontent.com/66086031/170499741-88729f95-264c-4b93-9d11-c9de044a5533.png)
 
-## Running c program on a test RISC-V core
+### Passing the C program as a HEX file
 
-![image](https://user-images.githubusercontent.com/66086031/170500540-12f8d57a-c5cf-4a6b-aaaa-441ca750c04d.png)
+```mermaid
+graph LR;
+
+Memory --> RISC-V
+RISC-V --> R[Display the result]
+
+```
 
 ```console
 git clone https://github.com/kunalg123/riscv_workshop_collaterals.git
