@@ -216,3 +216,16 @@ int main () {
 
 ![image](https://user-images.githubusercontent.com/66086031/170498879-1920ab36-96c5-41c2-b347-5423c969d997.png)
 
+#### Debug the code
+
+```console
+riscv64-unknown-elf-gcc -Ofast -mabi=lp64 -march=rv64i -o sumof_N.o sumof_N.c load.S
+spike
+```
+
+![image](https://user-images.githubusercontent.com/66086031/170499741-88729f95-264c-4b93-9d11-c9de044a5533.png)
+
+## Labs using iverilog
+
+![image](https://user-images.githubusercontent.com/66086031/170500540-12f8d57a-c5cf-4a6b-aaaa-441ca750c04d.png)
+
