@@ -1,15 +1,52 @@
+<!-- TOC start -->
+- [Day 1 Introduction to RISC - V ISA and GNU compiler toolchain](#day-1-introduction-to-risc-v-isa-and-gnu-compiler-toolchain)
+  * [RISC - V ISA](#risc-v-isa)
+    + [Intro to ISA](#intro-to-isa)
+    + [From Apps to Hardware](#from-apps-to-hardware)
+    + [Types of instruction](#types-of-instruction)
+  * [Labs](#labs)
+    + [C Program to compute Sum from 1 to N](#c-program-to-compute-sum-from-1-to-n)
+      - [C Program file](#c-program-file)
+      - [Command to execute](#command-to-execute)
+    + [gcc compiler and dissassemble](#gcc-compiler-and-dissassemble)
+      - [Normal speed](#normal-speed)
+      - [Fast](#fast)
+    + [Spike simulation and debug](#spike-simulation-and-debug)
+      - [Debugging](#debugging)
+    + [Number systems](#number-systems)
+      - [64-bit Number system](#64-bit-number-system)
+      - [Signed number representation](#signed-number-representation)
+      - [Lab for signed and unsigned magnitude](#lab-for-signed-and-unsigned-magnitude)
+- [Day 2 - Application Binary Interface and verification flow](#day-2-application-binary-interface-and-verification-flow)
+  * [Application Binary Interface (ABI)](#application-binary-interface-abi)
+    + [Intro to ABI](#intro-to-abi)
+    + [Memory Allocation for double words](#memory-allocation-for-double-words)
+    + [Load, Add and Store instructions](#load-add-and-store-instructions)
+    + [RV64I registers and their ABI Names](#rv64i-registers-and-their-abi-names)
+  * [Labs using ABI function call](#labs-using-abi-function-call)
+    + [Sum of N numbers Flowchart](#sum-of-n-numbers-flowchart)
+    + [Assembly code for sum of N numbers](#assembly-code-for-sum-of-n-numbers)
+      - [C program to call the assembly code](#c-program-to-call-the-assembly-code)
+      - [Debug the code](#debug-the-code)
+  * [Running c program on a test RISC-V core](#running-c-program-on-a-test-risc-v-core)
+<!-- TOC end -->
 
+<!-- TOC --><a name="day-1-introduction-to-risc-v-isa-and-gnu-compiler-toolchain"></a>
 # Day 1 Introduction to RISC - V ISA and GNU compiler toolchain
 
+<!-- TOC --><a name="risc-v-isa"></a>
 ## RISC - V ISA
 
+<!-- TOC --><a name="intro-to-isa"></a>
 ### Intro to ISA
 
+<!-- TOC --><a name="from-apps-to-hardware"></a>
 ### From Apps to Hardware
 ![image](https://user-images.githubusercontent.com/66086031/170155862-83e9b749-9fd6-4593-a5f5-060e611b821c.png)
 
 ![image](https://user-images.githubusercontent.com/66086031/170156160-42bde070-abf6-40fa-9129-90990ed01bf2.png)
 
+<!-- TOC --><a name="types-of-instruction"></a>
 ### Types of instruction
 
 ![image](https://user-images.githubusercontent.com/66086031/170157205-900b1cd7-273c-41f3-a71a-00f73292c588.png)
@@ -23,10 +60,13 @@
 Application Binary Interface - System calls through which the programmers can access the registers of the RISC - V Core
 Memory allocation and stack pointer
 
+<!-- TOC --><a name="labs"></a>
 ## Labs
 
+<!-- TOC --><a name="c-program-to-compute-sum-from-1-to-n"></a>
 ### C Program to compute Sum from 1 to N
 
+<!-- TOC --><a name="c-program-file"></a>
 #### C Program file
 ```c
 #include <stdio.h>
@@ -43,6 +83,7 @@ int main () {
 }
 ```
 
+<!-- TOC --><a name="command-to-execute"></a>
 #### Command to execute
 ```console
 gcc sumofn.c -o sumofn
@@ -51,10 +92,12 @@ gcc sumofn.c -o sumofn
 
 ![image](https://user-images.githubusercontent.com/66086031/170158604-aeac5978-1288-4dac-95b8-744ca5fae4ab.png)
 
+<!-- TOC --><a name="gcc-compiler-and-dissassemble"></a>
 ### gcc compiler and dissassemble
 
 - Now we run the compiled code in a test RISC - V Core
 - 
+<!-- TOC --><a name="normal-speed"></a>
 #### Normal speed
 ```console
 riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o sumofn.o sumofn.c
@@ -68,6 +111,7 @@ riscv64-unknown-elf-objdump -d sumofn.o | less
 
 Number of instructions = 
 
+<!-- TOC --><a name="fast"></a>
 #### Fast
 
 ```console
@@ -77,6 +121,7 @@ riscv64-unknown-elf-objdump -d sumofn.o | less
 
 ![image](https://user-images.githubusercontent.com/66086031/170161041-84c37cfa-7382-4fcf-a5bb-25a3fb448e7f.png)
 
+<!-- TOC --><a name="spike-simulation-and-debug"></a>
 ### Spike simulation and debug
 ![image](https://user-images.githubusercontent.com/66086031/170253889-8bdbdee9-0158-43e8-b87d-c421bea14e16.png)
 
@@ -95,6 +140,7 @@ reg 0 a0
 ```
 This command is used for the checking the content of a register
 
+<!-- TOC --><a name="debugging"></a>
 #### Debugging
 
 ![image](https://user-images.githubusercontent.com/66086031/170256907-95f60649-d30e-458d-bc79-c599d7973eeb.png)
@@ -106,8 +152,10 @@ This command is used for the checking the content of a register
 - Here the value of stack pointer is decreased by -10 in hex. 
 
 
+<!-- TOC --><a name="number-systems"></a>
 ### Number systems
 
+<!-- TOC --><a name="64-bit-number-system"></a>
 #### 64-bit Number system
 
 - 8 bits => 1 byte
@@ -120,12 +168,17 @@ number of combinations using n bits => $2^n$
 
 Highest number represented by 64-bit system => $(2^64) - 1$
 
+<!-- TOC --><a name="signed-number-representation"></a>
 #### Signed number representation
+<!-- TOC --><a name="lab-for-signed-and-unsigned-magnitude"></a>
 #### Lab for signed and unsigned magnitude
 
+<!-- TOC --><a name="day-2-application-binary-interface-and-verification-flow"></a>
 # Day 2 - Application Binary Interface and verification flow
 
+<!-- TOC --><a name="application-binary-interface-abi"></a>
 ## Application Binary Interface (ABI)
+<!-- TOC --><a name="intro-to-abi"></a>
 ### Intro to ABI
 
 ![image](https://user-images.githubusercontent.com/66086031/170488080-6818b07f-3ae7-4da8-b7d3-86a21550b442.png)
@@ -146,6 +199,7 @@ A -->|ABI| RISC-V-Core
 
 - There are 32 registers each of 64 bits in the RV64.
 
+<!-- TOC --><a name="memory-allocation-for-double-words"></a>
 ### Memory Allocation for double words
 
 - Memory is **byte-addressable**
@@ -153,6 +207,7 @@ A -->|ABI| RISC-V-Core
 - RISC - V follows little-endian memory system.
 - MSB bits have higher memory address and LSB have lower memory address
 
+<!-- TOC --><a name="load-add-and-store-instructions"></a>
 ### Load, Add and Store instructions
 
 ![image](https://user-images.githubusercontent.com/66086031/170492880-2ef99afb-8015-4c07-8dc4-bfab27c1540c.png)
@@ -163,6 +218,7 @@ A -->|ABI| RISC-V-Core
 
 ![image](https://user-images.githubusercontent.com/66086031/170493491-a7b70b35-fe83-439d-979c-0bedc71edf81.png)
 
+<!-- TOC --><a name="rv64i-registers-and-their-abi-names"></a>
 ### RV64I registers and their ABI Names
 
 - Load, add and store belong to RV64I base instructions.
@@ -174,11 +230,14 @@ A -->|ABI| RISC-V-Core
 
 ![image](https://user-images.githubusercontent.com/66086031/170494227-79438b1a-17ec-41e5-9ea8-dce2746424e2.png)
 
+<!-- TOC --><a name="labs-using-abi-function-call"></a>
 ## Labs using ABI function call
 
+<!-- TOC --><a name="sum-of-n-numbers-flowchart"></a>
 ### Sum of N numbers Flowchart
 ![image](https://user-images.githubusercontent.com/66086031/170495257-401375e5-7cd8-4fbd-b2a6-482af8bf3815.png)
 
+<!-- TOC --><a name="assembly-code-for-sum-of-n-numbers"></a>
 ### Assembly code for sum of N numbers
 
 ```assembly
@@ -199,6 +258,7 @@ loop:
 		ret		
 ```
 
+<!-- TOC --><a name="c-program-to-call-the-assembly-code"></a>
 #### C program to call the assembly code
 ```c
 #include <stdio.h>
@@ -216,6 +276,7 @@ int main () {
 
 ![image](https://user-images.githubusercontent.com/66086031/170498879-1920ab36-96c5-41c2-b347-5423c969d997.png)
 
+<!-- TOC --><a name="debug-the-code"></a>
 #### Debug the code
 
 ```console
@@ -225,6 +286,7 @@ spike
 
 ![image](https://user-images.githubusercontent.com/66086031/170499741-88729f95-264c-4b93-9d11-c9de044a5533.png)
 
+<!-- TOC --><a name="running-c-program-on-a-test-risc-v-core"></a>
 ## Running c program on a test RISC-V core
 
 ![image](https://user-images.githubusercontent.com/66086031/170500540-12f8d57a-c5cf-4a6b-aaaa-441ca750c04d.png)
