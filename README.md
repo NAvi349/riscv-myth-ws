@@ -89,6 +89,12 @@ riscv64-unknown-elf-objdump -d sumofn.o | less
 spike pk sumofn.o
 ```
 
+debug code
+```console
+spike pk -d sumofn.o
+
+```
+
 This command is used for displaying the program after it gets executed by the RISC - V core.
 
 ```console
