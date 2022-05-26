@@ -196,6 +196,23 @@ loop:
 		add a3, a3, 1 	// increment a3 by 1
 		blt a3, a2, loop	// loop back as long as i < n
 		add a0, a4, zero	// store result in a0
-		ret
-		
+		ret		
 ```
+
+#### C program to call the assembly code
+```c
+#include <stdio.h>
+
+extern int load(int x, int y);
+
+int main () {
+	int result = 0;
+	int count = 10;
+	result = load(0x0, count+1);
+	printf("Sum of numbers from 1 to %d is %d\n", count, result);
+	return 0;
+}	
+```
+
+![image](https://user-images.githubusercontent.com/66086031/170498879-1920ab36-96c5-41c2-b347-5423c969d997.png)
+
