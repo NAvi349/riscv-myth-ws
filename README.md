@@ -122,3 +122,17 @@ Highest number represented by 64-bit system => $(2^64) - 1$
 
 #### Signed number representation
 #### Lab for signed and unsigned magnitude
+
+# Day 2 - Application Binary Interface
+
+## Intro to ABI
+
+![image](https://user-images.githubusercontent.com/66086031/170488080-6818b07f-3ae7-4da8-b7d3-86a21550b442.png)
+
+- It the interface present between the software application and the Hardware
+
+```mermaid
+Application Program --> Standard Libraries
+Standard Libraries --> Operating System
+Operating System --> RISC - V Core
+```
