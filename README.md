@@ -129,13 +129,16 @@ Highest number represented by 64-bit system => $(2^64) - 1$
 
 ![image](https://user-images.githubusercontent.com/66086031/170488080-6818b07f-3ae7-4da8-b7d3-86a21550b442.png)
 
-- It the interface present between the software application and the Hardware
+- ABI the interface present between the software application and the registers of the ISA
+- It can be used to access the registers through system calls
+
 
 ```mermaid
 
 graph TD
-Application-Program -->|API| Standard-Libraries
+A[Application-Program] -->|API| Standard-Libraries
 Standard-Libraries -->|System-call| Operating-System
 Operating-System -->|ISA| RISC-V-Core
 
+A -->|ABI| RISC-V-Core
 ```
