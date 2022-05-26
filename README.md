@@ -123,9 +123,10 @@ Highest number represented by 64-bit system => $(2^64) - 1$
 #### Signed number representation
 #### Lab for signed and unsigned magnitude
 
-# Day 2 - Application Binary Interface
+# Day 2 - Application Binary Interface and verification flow
 
-## Intro to ABI
+## Application Binary Interface (ABI)
+### Intro to ABI
 
 ![image](https://user-images.githubusercontent.com/66086031/170488080-6818b07f-3ae7-4da8-b7d3-86a21550b442.png)
 
@@ -141,4 +142,60 @@ Standard-Libraries -->|System-call| Operating-System
 Operating-System -->|ISA| RISC-V-Core
 
 A -->|ABI| RISC-V-Core
+```
+
+- There are 32 registers each of 64 bits in the RV64.
+
+### Memory Allocation for double words
+
+- Memory is **byte-addressable**
+- Each address contains 8 - bits (i.e.) - 1 byte
+- RISC - V follows little-endian memory system.
+- MSB bits have higher memory address and LSB have lower memory address
+
+### Load, Add and Store instructions
+
+![image](https://user-images.githubusercontent.com/66086031/170492880-2ef99afb-8015-4c07-8dc4-bfab27c1540c.png)
+
+![image](https://user-images.githubusercontent.com/66086031/170493000-b7f224c5-e685-4a92-9b79-20ea367c1745.png)
+
+![image](https://user-images.githubusercontent.com/66086031/170493204-b63292f6-2e10-420d-b5dc-cb54fd3e1846.png)
+
+![image](https://user-images.githubusercontent.com/66086031/170493491-a7b70b35-fe83-439d-979c-0bedc71edf81.png)
+
+### RV64I registers and their ABI Names
+
+- Load, add and store belong to RV64I base instructions.
+- Load is a I-type instruction
+- Add is a R-type instruction
+- Store is a S-type instruction
+- rd is of size 5 bits => So $2^5 = 32$ registers
+- Naming convention is x0 - x31
+
+![image](https://user-images.githubusercontent.com/66086031/170494227-79438b1a-17ec-41e5-9ea8-dce2746424e2.png)
+
+## Labs using ABI function call
+
+### Sum of N numbers Flowchart
+![image](https://user-images.githubusercontent.com/66086031/170495257-401375e5-7cd8-4fbd-b2a6-482af8bf3815.png)
+
+### Assembly code for sum of N numbers
+
+```assembly
+.section .text
+.global load
+.type load, @function
+
+load:
+		add a4, a0, zero // a4 - sum register
+		add a2, a0, a1   // a2 - count register, n
+		add a3, a0, zero // a3 - intermediate register, i
+		
+loop:
+		add a4, a3, a4	// add a3 to a4 every loop
+		add a3, a3, 1 	// increment a3 by 1
+		blt a3, a2, loop	// loop back as long as i < n
+		add a0, a4, zero	// store result in a0
+		ret
+		
 ```
