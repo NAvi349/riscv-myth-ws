@@ -329,3 +329,19 @@ chmod 377 rv32im.sh
 ##### Pipelined Pythagorean Example
 ![image](https://user-images.githubusercontent.com/66086031/170714110-49abcceb-4391-491a-95b5-dfe84bb2b075.png)
 
+##### Basic Logic Gates Example
+- Load Default template
+
+![image](https://user-images.githubusercontent.com/66086031/170716547-dbe2d36d-93d9-4feb-878c-e3a857bf6b36.png)
+
+```tl-verilog
+   $reset = *reset;
+
+   $out1 = ~$in1;  // NOT
+   $out2 = $in1 || $in2; // bitwise - OR
+   $out3 = $in1 && $in2; // bitwise - AND
+   $out4 = $in1 ^ $in2; // bitwise - XOR
+   $out5 = ~($in1 ^ $in2); // bitwise - XNOR
+```
+
+
