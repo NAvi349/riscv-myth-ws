@@ -314,3 +314,18 @@ chmod 377 rv32im.sh
 - The instructions that we want to run are passed as HEX files into the RISC - V core
 
 ![image](https://user-images.githubusercontent.com/66086031/170502881-b3b81525-44fd-4bf0-b972-2e8a5425dcaf.png)
+
+
+## Day 3 - Digital Logic with TL-Verilog and Makerchip 
+
+### Combinational Logic
+
+#### Basic logic gates
+
+#### Mux
+
+#### Labs using Makerchip
+
+##### Pipelined Pythagorean Example
+![image](https://user-images.githubusercontent.com/66086031/170711666-a6638847-271d-4cc0-a683-58288e3e4321.png)
+
