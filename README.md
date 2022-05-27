@@ -327,5 +327,5 @@ chmod 377 rv32im.sh
 #### Labs using Makerchip
 
 ##### Pipelined Pythagorean Example
-![image](https://user-images.githubusercontent.com/66086031/170711666-a6638847-271d-4cc0-a683-58288e3e4321.png)
+![image](https://user-images.githubusercontent.com/66086031/170714110-49abcceb-4391-491a-95b5-dfe84bb2b075.png)
 
