@@ -382,18 +382,18 @@ $out[7:0] = $sel ? $in1[7:0] : $in0[7:0]; // 2x1 MUX
 - Code
 
 ```verilog
-$val1 = $rand1[3:0];
-$val2 = $rand2[3:0];
+      $val1 = $rand1[3:0];
+      $val2 = $rand2[3:0];
 
-$sum[31:0] = $val1 + $val2;  //00
-$diff[31:0] = $val1 - $val2; //01
-$prod[31:0] = $val1 * $val2; //10
-$quot[31:0] = $val1 / $val2; //11
+      $sum[31:0] = $val1 + $val2;  //00
+      $diff[31:0] = $val1 - $val2; //01
+      $prod[31:0] = $val1 * $val2; //10
+      $quot[31:0] = $val1 / $val2; //11
 
-$out[31:0] = ($op[1:0] == 2'b00) ? $sum :
-           ($op[1:0] == 2'b01) ? $diff :
-           ($op[1:0] == 2'b10) ? $prod :
-           ($op[1:0] == 2'b11) ? $quot : 32'b0;
+      $out[31:0] = ($op[1:0] == 2'b00) ? $sum :
+                 ($op[1:0] == 2'b01) ? $diff :
+                 ($op[1:0] == 2'b10) ? $prod :
+                 ($op[1:0] == 2'b11) ? $quot : 32'b0;
 ```
 
 - Output Waveform
@@ -401,5 +401,69 @@ $out[31:0] = ($op[1:0] == 2'b00) ? $sum :
 ![image](https://user-images.githubusercontent.com/66086031/170732437-7f744b81-d027-4c41-b333-9e3302101a6c.png)
 
 
+### Sequential Logic
 
+- Present state depends on past state.
+- Memory is associated with sequential logic.
+- It retains its value till a clock edge or (level comes).
+
+#### Finite State Machine
+
+![image](https://user-images.githubusercontent.com/66086031/170738050-a5720bb2-e3f2-4a5f-8325-0ce05d178959.png)
+
+
+#### Fibonacci Series implmenetation
+
+- Code
+
+```
+$num[31:0] = $reset ? 1 : (>>1$num + >>2$num);
+```
+
+- Output Waveform
+
+![image](https://user-images.githubusercontent.com/66086031/170740123-6cb3a104-7159-4329-a168-00a982991568.png)
+
+#### Up-counter implementation
+
+- Code
+
+```
+$num[31:0] = $reset ? 0 : (>>1$num + 1);
+```
+
+- Output Waveform
+
+![image](https://user-images.githubusercontent.com/66086031/170741198-952b935c-f42e-4845-9638-a1966c014039.png)
+
+#### Sequential Calculator
+
+- Here the last output becomes one of the present input.
+
+- Code
+
+```verilog
+   $reset = *reset;
+
+   $val1 = $rand1[3:0];
+   $val2 = $rand2[3:0];
+   
+   //$num[31:0] = $reset ? 0 : (>>1$num + 1);
+   
+   $sum[31:0] = $out + $val2;  //00
+   $diff[31:0] = $out - $val2; //01
+   $prod[31:0] = $out * $val2; //10
+   $quot[31:0] = $out / $val2; //11
+   
+   $tout[31:0] = ($op[1:0] == 2'b00) ? $sum :
+               ($op[1:0] == 2'b01) ? $diff :
+               ($op[1:0] == 2'b10) ? $prod :
+               ($op[1:0] == 2'b11) ? $quot : 32'b0;
+   
+   $out[31:0] = $reset ? 0 : >>1$tout;
+```
+
+- Output Waveform
+
+![image](https://user-images.githubusercontent.com/66086031/170744951-16ce98d8-9418-48b5-a1e1-ded88042f229.png)
 
