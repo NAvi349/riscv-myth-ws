@@ -367,7 +367,6 @@ $out = $sel ? $in1 : $in0; // 2x1 MUX
  
 ![image](https://user-images.githubusercontent.com/66086031/170719127-31375253-5cb5-4eee-8cb4-71bed7d563ff.png)
 
-
 - 2x1 Mux (vector)
  
 ```verilog
@@ -379,5 +378,31 @@ $out[7:0] = $sel ? $in1[7:0] : $in0[7:0]; // 2x1 MUX
 ![image](https://user-images.githubusercontent.com/66086031/170719971-67ce95ae-e37a-4b74-b651-0af7103a11c4.png)
 
 ##### Combinational Calculator
+
+- Code
+
+```verilog
+$reset = *reset;
+
+$val1 = $rand1[3:0];
+$val2 = $rand2[3:0];
+
+$sum[31:0] = $val1 + $val2;  //00
+$diff[31:0] = $val1 - $val2; //01
+$prod[31:0] = $val1 * $val2; //10
+$quot[31:0] = $val1 / $val2; //11
+
+$out[31:0] = ($op == 2'b00) ? $sum :
+           ($op == 2'b01) ? $diff :
+           ($op == 2'b10) ? $prod :
+           ($op == 2'b11) ? $quot : 32'b0;
+
+```
+
+- Output Waveform
+
+![image](https://user-images.githubusercontent.com/66086031/170732076-717862c7-af30-4978-bab9-b2e9d11dcfd4.png)
+
+
 
 
