@@ -334,7 +334,7 @@ chmod 377 rv32im.sh
 
 ![image](https://user-images.githubusercontent.com/66086031/170716547-dbe2d36d-93d9-4feb-878c-e3a857bf6b36.png)
 
-```tl-verilog
+```verilog
    $reset = *reset;
 
    $out1 = ~$in1;  // NOT
