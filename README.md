@@ -344,4 +344,36 @@ $out4 = $in1 ^ $in2; // bitwise - XOR
 $out5 = ~($in1 ^ $in2); // bitwise - XNOR
 ```
 
+##### Vectors
+
+- Code
+```verilog
+$out[4:0] = $in1[3:0] + $in2[3:0];
+```
+
+- Output Waveform
+![image](https://user-images.githubusercontent.com/66086031/170718420-b49fa8ab-cb3a-47c3-b2d6-ce91b8ced9d8.png)
+
+
+##### Mux
+
+- 2x1 Mux
+```verilog
+$out = $sel ? $in1 : $in0; // 2x1 MUX
+```
+
+- Output Waveform
+![image](https://user-images.githubusercontent.com/66086031/170719127-31375253-5cb5-4eee-8cb4-71bed7d563ff.png)
+
+
+- 2x1 Mux (vector)
+```verilog
+$out[7:0] = $sel ? $in1[7:0] : $in0[7:0]; // 2x1 MUX
+```
+
+- Output Waveform
+![image](https://user-images.githubusercontent.com/66086031/170719971-67ce95ae-e37a-4b74-b651-0af7103a11c4.png)
+
+##### Combinational Calculator
+
 
