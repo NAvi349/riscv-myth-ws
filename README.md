@@ -466,4 +466,26 @@ $num[31:0] = $reset ? 0 : (>>1$num + 1);
 
 ![image](https://user-images.githubusercontent.com/66086031/170757815-96e8a3fe-a23d-40db-8d46-59891462bc9f.png)
 
+### Pipelined Logic
 
+#### Intro to Pipelining and Re - timing
+
+- We divide the long combinational circuit into smaller parts by inserting registers.
+- Each smaller part has less propagation delay.
+- So now each stage can be executed at higher frequency.
+- Pipelining allows us to overlap the execution of one instruction with the earlier stage of another instruction.
+- It increases system response time, as we don't need to wait till the entire instruction is executed.
+
+##### Re-timing
+- We can move the flip flops to achieve equal delays in each stage.
+
+![image](https://user-images.githubusercontent.com/66086031/170761089-83265297-655f-4ece-b44d-307b9a00883c.png)
+![image](https://user-images.githubusercontent.com/66086031/170761749-e1d92e0d-b693-45d9-b593-a7315f4dd0c2.png)
+
+![image](https://user-images.githubusercontent.com/66086031/170762391-6d26bad5-b927-4518-ba0e-28d1a46f3933.png)
+
+#### Benefits of pipelining
+
+- Max. frequency of the clock, depends on the propagation delay between flip flops.
+- By inserting more flip flops, the propagation delay reduces
+- It increases the throughtout 
