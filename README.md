@@ -335,13 +335,13 @@ chmod 377 rv32im.sh
 ![image](https://user-images.githubusercontent.com/66086031/170716547-dbe2d36d-93d9-4feb-878c-e3a857bf6b36.png)
 
 ```verilog
-   $reset = *reset;
+$reset = *reset;
 
-   $out1 = ~$in1;  // NOT
-   $out2 = $in1 || $in2; // bitwise - OR
-   $out3 = $in1 && $in2; // bitwise - AND
-   $out4 = $in1 ^ $in2; // bitwise - XOR
-   $out5 = ~($in1 ^ $in2); // bitwise - XNOR
+$out1 = ~$in1;  // NOT
+$out2 = $in1 || $in2; // bitwise - OR
+$out3 = $in1 && $in2; // bitwise - AND
+$out4 = $in1 ^ $in2; // bitwise - XOR
+$out5 = ~($in1 ^ $in2); // bitwise - XNOR
 ```
 
 
