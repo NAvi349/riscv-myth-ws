@@ -382,8 +382,6 @@ $out[7:0] = $sel ? $in1[7:0] : $in0[7:0]; // 2x1 MUX
 - Code
 
 ```verilog
-$reset = *reset;
-
 $val1 = $rand1[3:0];
 $val2 = $rand2[3:0];
 
@@ -392,16 +390,15 @@ $diff[31:0] = $val1 - $val2; //01
 $prod[31:0] = $val1 * $val2; //10
 $quot[31:0] = $val1 / $val2; //11
 
-$out[31:0] = ($op == 2'b00) ? $sum :
-           ($op == 2'b01) ? $diff :
-           ($op == 2'b10) ? $prod :
-           ($op == 2'b11) ? $quot : 32'b0;
-
+$out[31:0] = ($op[1:0] == 2'b00) ? $sum :
+           ($op[1:0] == 2'b01) ? $diff :
+           ($op[1:0] == 2'b10) ? $prod :
+           ($op[1:0] == 2'b11) ? $quot : 32'b0;
 ```
 
 - Output Waveform
 
-![image](https://user-images.githubusercontent.com/66086031/170732076-717862c7-af30-4978-bab9-b2e9d11dcfd4.png)
+![image](https://user-images.githubusercontent.com/66086031/170732437-7f744b81-d027-4c41-b333-9e3302101a6c.png)
 
 
 
