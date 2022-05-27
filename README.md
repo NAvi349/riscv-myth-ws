@@ -382,8 +382,8 @@ $out[7:0] = $sel ? $in1[7:0] : $in0[7:0]; // 2x1 MUX
 - Code
 
 ```verilog
-      $val1 = $rand1[3:0];
-      $val2 = $rand2[3:0];
+      $val1[31:0] = $rand1[3:0];
+      $val2[31:0] = $rand2[3:0];
 
       $sum[31:0] = $val1 + $val2;  //00
       $diff[31:0] = $val1 - $val2; //01
@@ -398,8 +398,7 @@ $out[7:0] = $sel ? $in1[7:0] : $in0[7:0]; // 2x1 MUX
 
 - Output Waveform
 
-![image](https://user-images.githubusercontent.com/66086031/170732437-7f744b81-d027-4c41-b333-9e3302101a6c.png)
-
+![image](https://user-images.githubusercontent.com/66086031/170759212-18939fcd-95bf-4f8a-9e91-c74c9f1b6dca.png)
 
 ### Sequential Logic
 
@@ -445,8 +444,8 @@ $num[31:0] = $reset ? 0 : (>>1$num + 1);
 ```verilog
    $reset = *reset;
 
-   $val1 = $rand1[3:0];
-   $val2 = $rand2[3:0];
+   //$val1[31:0] = $rand1[3:0];
+   $val2[31:0] = $rand2[3:0];
    
    //$num[31:0] = $reset ? 0 : (>>1$num + 1);
    
@@ -465,5 +464,6 @@ $num[31:0] = $reset ? 0 : (>>1$num + 1);
 
 - Output Waveform
 
-![image](https://user-images.githubusercontent.com/66086031/170744951-16ce98d8-9418-48b5-a1e1-ded88042f229.png)
+![image](https://user-images.githubusercontent.com/66086031/170757815-96e8a3fe-a23d-40db-8d46-59891462bc9f.png)
+
 
