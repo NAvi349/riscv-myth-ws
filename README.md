@@ -528,10 +528,18 @@ $num[31:0] = $reset ? 0 : (>>1$num + 1);
 
 #### 2-Cycle Calculator
 
+
+i. First we shall include the counter and calculator in the first stage.
+
+![image](https://user-images.githubusercontent.com/66086031/170805886-60df757d-a9e1-49be-b5ca-07a4c695fb39.png)
+
+ii. Change alignment of $out to have two cycle latency
+
+![Uploading image.png…]()
+
+
+
 - Code
 ```verilog
 
 ```
-
-- Output Waveform
-
