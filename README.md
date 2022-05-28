@@ -799,48 +799,6 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 ![image](https://user-images.githubusercontent.com/66086031/170821540-02879643-897f-4873-915c-68f0e2db53eb.png)
 
-```verilog
-   |cpu
-      @0
-         $reset = *reset;
-      // YOUR CODE HERE
-      // ...
-      
-         $pc[31:0] = (>>1$reset) ? 32'b0 : >>1$pc + 32'd4;
-         $imem_rd_en = ~($reset);
-      
-      @1
-      ?$imem_rd_en
-         @1
-            $imem_rd_addr[31:0] = $pc[M4_IMEM_INDEX_CNT+1:2];
-      
-      @1   
-         $instr[31:0] = $imem_rd_data[31:0];
-         
-         //decode (IRSBJU)
-         // i - type (immediate)
-         $is_i_instr = $instr[6:2] ==? 5'b0000x ||
-                       $instr[6:2] ==? 5'b001x0 ||
-                       $instr[6:2] === 5'b11001;
-         
-         // r - type (register type)
-         $is_r_instr = $instr[6:2] == 5'b01011 ||
-                      $instr[6:2] ==? 5'b011x0 ||
-                      $instr[6:2] === 5'b10100;
-         
-         // s - type (store)
-         $is_s_instr = $instr[6:2] ==? 5'b0100x;
-         
-         // b - type (branch-type)
-         $is_b_instr = $instr[6:2] === 5'b11000;
-         
-         // j - type (jump instructions)
-         $is_j_instr = $instr[6:2] === 5'b11011;
-         
-         // u - type (upper immediate)
-         $is_u_instr = $instr[6:2] ==? 5'b0x101;
-```
-
 ![image](https://user-images.githubusercontent.com/66086031/170821518-35310faf-009b-406f-8ad4-bc0d216d9c89.png)
 
 #### Immediate Decode
@@ -848,18 +806,6 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 ![image](https://user-images.githubusercontent.com/66086031/170821724-996fb31e-31f7-4109-9307-297100f9b49b.png)
 
 - Based on the instruction type, we need to form the immediate.
-
-```verilog
-         ...
-         //immediate decode     
-         
-         $imm[31:0] = $is_i_instr ? { {21{$instr[31]}}, $instr[30:20] } :
-                      $is_s_instr ? { {21{$instr[31]}}, $instr[30:25], $instr[11:7] } :
-                      $is_b_instr ? { {20{$instr[31]}}, $instr[7], $instr[30:25], $instr[11:8], 1'b0 } :
-                      $is_u_instr ? { $instr[31:12], 12'b0 } :
-                      $is_j_instr ? { {12{$instr[31]}}, $instr[19:12], $instr[20], $instr[30:21], 1'b0 } :
-                      32'bx; // default value
-```
 
 ![image](https://user-images.githubusercontent.com/66086031/170822409-78c51583-fbe5-4881-a13a-6033bb45b632.png)
 
@@ -869,18 +815,21 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 ![image](https://user-images.githubusercontent.com/66086031/170822721-72dd44a1-23ee-45a3-93c4-0ef32cecf9e2.png)
 
-```verilog
-         // other fields decode
-         
-         $rs2[4:0] = $instr[24:20];
-         $rs1[4:0] = $instr[19:15];
-         $rd[4:0] = $instr[11:7];
-         $funct7[6:0] = $instr[31:25];
-         $opcode[6:0] = $instr[6:0];
-         $funct3[2:0] = $instr[14:12];
-```
-
 ![image](https://user-images.githubusercontent.com/66086031/170823049-88b61ad9-7a31-460b-9d0b-66944086f150.png)
+
+#### Validity in Instruction decode
+
+- Now add validity checks when extract the fields
+
+![image](https://user-images.githubusercontent.com/66086031/170824353-995c7c88-bd22-4da5-b29f-af9b2c5c96fb.png)
+
+#### Determining each instruction
+
+- Using funct7, opcode and funct3 decode each type of instruction
+
+![image](https://user-images.githubusercontent.com/66086031/170825166-71496325-f86a-4483-ab2c-a62174166629.png)
+
+![image](https://user-images.githubusercontent.com/66086031/170825155-cfba2c7f-09d0-4b14-bb13-9002e52f6ffd.png)
 
 
 ### Control Logic
