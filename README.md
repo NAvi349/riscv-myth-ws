@@ -528,14 +528,17 @@ $num[31:0] = $reset ? 0 : (>>1$num + 1);
 
 #### 2-Cycle Calculator
 
-
 i. First we shall include the counter and calculator in the first stage.
 
-![image](https://user-images.githubusercontent.com/66086031/170805886-60df757d-a9e1-49be-b5ca-07a4c695fb39.png)
+![image](https://user-images.githubusercontent.com/66086031/170805921-c02e3b01-9e6b-4806-9eb4-0d920693a85b.png)
 
 ii. Change alignment of $out to have two cycle latency
 
 ![image](https://user-images.githubusercontent.com/66086031/170805904-76cddf80-1a48-4529-ad04-4a3bea9b055b.png)
+
+iii. Change counter to 1 - bit
+
+![image](https://user-images.githubusercontent.com/66086031/170805963-32571460-1a63-4a54-b80c-9e3add4bbf64.png)
 
 
 
