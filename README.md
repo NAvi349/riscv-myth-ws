@@ -756,6 +756,8 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 ![image](https://user-images.githubusercontent.com/66086031/170815832-646673e6-3556-47c4-a7fb-2224ffa03b6d.png)
 
+### Fetch and Decode
+
 #### Program Counter Implementation
 
 - Increments by +4 bytes every clock cycle.
@@ -773,13 +775,73 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 #### Fetch Stage Implementation
 
 ```verilog
-
+   |cpu
+      @0
+         $reset = *reset;
+      // YOUR CODE HERE
+      // ...
+      
+         $pc[31:0] = (>>1$reset) ? 32'b0 : >>1$pc + 32'd4;
+         $imem_rd_en = ~($reset);
+      
+      @1
+      ?$imem_rd_en
+         @1
+            $imem_rd_addr[31:0] = $pc[M4_IMEM_INDEX_CNT+1:2];
+      
+      @1   
+         $instr[31:0] = $imem_rd_data[31:0];
 ```
 
+![image](https://user-images.githubusercontent.com/66086031/170820753-80fe3a5e-f043-40d9-be36-76253659a47a.png)
 
+#### Decode Stage Implementation
 
-### Fetch and Decode
+![image](https://user-images.githubusercontent.com/66086031/170821540-02879643-897f-4873-915c-68f0e2db53eb.png)
 
+```verilog
+   |cpu
+      @0
+         $reset = *reset;
+      // YOUR CODE HERE
+      // ...
+      
+         $pc[31:0] = (>>1$reset) ? 32'b0 : >>1$pc + 32'd4;
+         $imem_rd_en = ~($reset);
+      
+      @1
+      ?$imem_rd_en
+         @1
+            $imem_rd_addr[31:0] = $pc[M4_IMEM_INDEX_CNT+1:2];
+      
+      @1   
+         $instr[31:0] = $imem_rd_data[31:0];
+         
+         //decode (IRSBJU)
+         // i - type (immediate)
+         $is_i_instr = $instr[6:2] ==? 5'b0000x ||
+                       $instr[6:2] ==? 5'b001x0 ||
+                       $instr[6:2] === 5'b11001;
+         
+         // r - type (register type)
+         $is_r_instr = $instr[6:2] == 5'b01011 ||
+                      $instr[6:2] ==? 5'b011x0 ||
+                      $instr[6:2] === 5'b10100;
+         
+         // s - type (store)
+         $is_s_instr = $instr[6:2] ==? 5'b0100x;
+         
+         // b - type (branch-type)
+         $is_b_instr = $instr[6:2] === 5'b11000;
+         
+         // j - type (jump instructions)
+         $is_j_instr = $instr[6:2] === 5'b11011;
+         
+         // u - type (upper immediate)
+         $is_u_instr = $instr[6:2] ==? 5'b0x101;
+```
+
+![image](https://user-images.githubusercontent.com/66086031/170821518-35310faf-009b-406f-8ad4-bc0d216d9c89.png)
 
 
 ### Control Logic
