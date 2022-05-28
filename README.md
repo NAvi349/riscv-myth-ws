@@ -498,3 +498,30 @@ $num[31:0] = $reset ? 0 : (>>1$num + 1);
 - Max. frequency of the clock, depends on the propagation delay between flip flops.
 - By inserting more flip flops, the propagation delay reduces
 - It increases the throughtout 
+
+#### Pipelined fibo series implementation
+
+![image](https://user-images.githubusercontent.com/66086031/170804662-332066da-2314-432f-a7c8-993f8002f630.png)
+
+
+- Everything in TL-Verilog is implicitly pipelined.
+- This fibo implementation is equivalent to the earlier implementation.
+- ![image](https://user-images.githubusercontent.com/66086031/170804569-3f40f3cd-6ff8-430b-a5db-be0a2ffd74b4.png)
+
+- Piplined Stages example
+- Code
+```verilog
+   $reset = *reset;
+
+   //...
+   |comp
+      @1
+         $err1 = $bad_input + $illegal_op;
+         
+      @3
+         $err2 = $over_flow + $err1;
+      @6
+         $err3 = $div_by_zero + $err2;   
+```
+- ![image](https://user-images.githubusercontent.com/66086031/170805061-8c3628af-8428-4768-b38d-7c39f8fc6403.png)
+
