@@ -540,6 +540,13 @@ iii. Change counter to 1 - bit
 
 ![image](https://user-images.githubusercontent.com/66086031/170805963-32571460-1a63-4a54-b80c-9e3add4bbf64.png)
 
+iv. Use the counter as valid signal. The output gets the Mux output every two clock cycles.
+
+![image](https://user-images.githubusercontent.com/66086031/170806478-e24ddcf8-2be7-4092-a7f2-4f9b81717024.png)
+
+v. Now we re-time(move the mux) to second stage. The output gets the Mux output every other clock cycle.
+
+![image](https://user-images.githubusercontent.com/66086031/170807210-4cd0d74e-b1f3-4409-8b46-2b173ace0b73.png)
 
 
 
