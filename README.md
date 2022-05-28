@@ -863,7 +863,7 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 ![image](https://user-images.githubusercontent.com/66086031/170822409-78c51583-fbe5-4881-a13a-6033bb45b632.png)
 
-#### Instruction Deocde
+#### Instruction Decode
 
 - Similiary, we can extract other fields of information
 
