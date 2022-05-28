@@ -588,12 +588,34 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 - Toggling of the clock consumes lot of power
 - Clock gating avoids toggling for invalid inputs
 
-#### Lab on validity
+#### Lab on validity and computing total distance
 
+- In this we compute the pythagorean distance and add it to the previous value.
 
+![image](https://user-images.githubusercontent.com/66086031/170811101-91298979-5402-4f07-b37c-2d84a1167cbb.png)
 
-#### Computing total distance
+```verilog
+   |calc
+      @1
+         $reset = *reset;
+      ?$valid
+         @1
+            $aa_sq[31:0] = $aa[3:0] * $aa;
+            $bb_sq[31:0] = $bb[3:0] * $bb;
 
+         @2
+            $cc_sq[31:0] = $aa_sq + $bb_sq;
+         @3
+            $cc[31:0] = sqrt($cc_sq);
+      
+      @4
+         $tot_dist[63:0] =
+               $reset ? 0 :
+               $valid ? >>1$tot_dist + $cc :
+                        >>1$tot_dist;
+```
+
+![image](https://user-images.githubusercontent.com/66086031/170811056-8c65762e-d713-4da5-89c0-3464dcaa418e.png)
 
 
 #### 2-cycle Calculator with Validity
