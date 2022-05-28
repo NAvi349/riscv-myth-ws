@@ -758,6 +758,9 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 #### Program Counter Implementation
 
+- Increments by +4 bytes every clock cycle.
+- Resets to 0 at the next clock cycle, if reset instruction is asserted.
+
 ```verilog
    |cpu
       @0
@@ -767,7 +770,13 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 ![image](https://user-images.githubusercontent.com/66086031/170817110-78f9b0b9-10d1-4d76-a75a-61e64485d001.png)
 
-#### Fetch
+#### Fetch Stage Implementation
+
+```verilog
+
+```
+
+
 
 ### Fetch and Decode
 
