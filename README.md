@@ -652,9 +652,62 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 ```
 
 - Output Waveform
-- 
+
 ![image](https://user-images.githubusercontent.com/66086031/170811957-316e4e4e-132c-419b-9f04-ea148d822add.png)
 
 
 #### Calculator single-value Memory
+
+- We can implement a memory system using a Mux that has a feedback path.
+- op = 100 => memory read (recall)
+- op = 101 => memory write
+
+```verilog
+   |calc
+      @0
+         $reset = *reset;
+         
+      @1   
+         //$val1[31:0] = $rand1[3:0];
+         $val2[31:0] = $rand2[3:0];
+
+         $valid = $reset ? 0 : (>>1$valid + 1);
+         
+         $valid_or_reset = $valid || $reset;
+         
+      ?$valid_or_reset
+         @1
+            $out[31:0] = $reset ? 0 : >>2$tout;
+            
+            $sum[31:0] = $out + $val2;  //00
+            $diff[31:0] = $out - $val2; //01
+            $prod[31:0] = $out * $val2; //10
+            $quot[31:0] = $out / $val2; //11   
+            
+            
+         @2
+            // op = 100 => memory read
+            // op = 101 => memory write
+            
+            // memory
+            $mem[31:0] = $reset ? 0 :
+                                  ($op[2:0] == 3'b101) ? >>2$tout :
+                                  >>2$mem;
+
+            $tout[31:0] = ($op[2:0] == 3'b000) ? $sum :
+                        ($op[2:0] == 3'b001) ? $diff :
+                        ($op[2:0] == 3'b010) ? $prod :
+                        ($op[2:0] == 3'b011) ? $quot :
+                        ($op[2:0] == 3'b100) ? >>2$mem : >>2$tout;
+```
+
+![image](https://user-images.githubusercontent.com/66086031/170814317-fb4e759f-5fd3-4b23-b242-932da8f614d3.png)
+
+- Here at the 32th clock cycle, we are writing the value ffd into the memory.
+
+![image](https://user-images.githubusercontent.com/66086031/170814637-3104816f-c573-4987-96e2-e25865b7cac9.png)
+
+- It take 2 cycles to write.
+
+
 
