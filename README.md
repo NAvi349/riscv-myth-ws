@@ -847,6 +847,11 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 ![image](https://user-images.githubusercontent.com/66086031/170826391-2572e0c7-1d65-4551-af16-f47ef45c753b.png)
 
+#### Register File Write
+
+- We cannot write to r0 register.
+
+![image](https://user-images.githubusercontent.com/66086031/170826837-188d218c-33cd-4a3d-a47d-c03479e1acd9.png)
 
 
 
