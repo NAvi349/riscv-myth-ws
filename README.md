@@ -32,6 +32,34 @@
         - [C program to call the assembly code](#c-program-to-call-the-assembly-code)
         - [Compiling through a RISC-V core](#compiling-through-a-risc-v-core)
     - [Passing the C program as a HEX file](#passing-the-c-program-as-a-hex-file)
+  - [Day 3 - Digital Logic with TL-Verilog and Makerchip](#day-3---digital-logic-with-tl-verilog-and-makerchip)
+    - [Combinational Logic](#combinational-logic)
+      - [Basic logic gates](#basic-logic-gates)
+      - [Mux](#mux)
+      - [Labs using Makerchip](#labs-using-makerchip)
+        - [Pipelined Pythagorean Example](#pipelined-pythagorean-example)
+        - [Basic Logic Gates Example](#basic-logic-gates-example)
+        - [Vectors](#vectors)
+        - [Mux_2x1](#mux_2x1)
+        - [Combinational Calculator](#combinational-calculator)
+    - [Sequential Logic](#sequential-logic)
+      - [Finite State Machine](#finite-state-machine)
+      - [Fibonacci Series implmenetation](#fibonacci-series-implmenetation)
+      - [Up-counter implementation](#up-counter-implementation)
+      - [Sequential Calculator](#sequential-calculator)
+    - [Pipelined Logic](#pipelined-logic)
+      - [Intro to Pipelining and Re - timing](#intro-to-pipelining-and-re---timing)
+        - [Re-timing](#re-timing)
+      - [Benefits of pipelining](#benefits-of-pipelining)
+      - [Pipelined fibo series implementation](#pipelined-fibo-series-implementation)
+      - [Error Conditions within Computation Pipeline](#error-conditions-within-computation-pipeline)
+      - [2-Cycle Calculator](#2-cycle-calculator)
+    - [Validity](#validity)
+      - [Intro to validity](#intro-to-validity)
+        - [Clock Gating](#clock-gating)
+      - [Lab on validity and computing total distance](#lab-on-validity-and-computing-total-distance)
+      - [2-cycle Calculator with Validity](#2-cycle-calculator-with-validity)
+      - [Calculator single-value Memory](#calculator-single-value-memory)
 
 ## Day 1 Introduction to RISC - V ISA and GNU compiler toolchain
 
@@ -315,8 +343,7 @@ chmod 377 rv32im.sh
 
 ![image](https://user-images.githubusercontent.com/66086031/170502881-b3b81525-44fd-4bf0-b972-2e8a5425dcaf.png)
 
-
-## Day 3 - Digital Logic with TL-Verilog and Makerchip 
+## Day 3 - Digital Logic with TL-Verilog and Makerchip
 
 ### Combinational Logic
 
@@ -327,9 +354,11 @@ chmod 377 rv32im.sh
 #### Labs using Makerchip
 
 ##### Pipelined Pythagorean Example
+
 ![image](https://user-images.githubusercontent.com/66086031/170714110-49abcceb-4391-491a-95b5-dfe84bb2b075.png)
 
 ##### Basic Logic Gates Example
+
 - Load Default template
 
 ![image](https://user-images.githubusercontent.com/66086031/170716547-dbe2d36d-93d9-4feb-878c-e3a857bf6b36.png)
@@ -347,28 +376,29 @@ $out5 = ~($in1 ^ $in2); // bitwise - XNOR
 ##### Vectors
 
 - Code
+
 ```verilog
 $out[4:0] = $in1[3:0] + $in2[3:0];
 ```
 
 - Output Waveform
+
 ![image](https://user-images.githubusercontent.com/66086031/170718420-b49fa8ab-cb3a-47c3-b2d6-ce91b8ced9d8.png)
 
-
-##### Mux
+##### Mux_2x1
 
 - 2x1 Mux
- 
+
 ```verilog
 $out = $sel ? $in1 : $in0; // 2x1 MUX
 ```
 
 - Output Waveform
- 
+
 ![image](https://user-images.githubusercontent.com/66086031/170719127-31375253-5cb5-4eee-8cb4-71bed7d563ff.png)
 
 - 2x1 Mux (vector)
- 
+
 ```verilog
 $out[7:0] = $sel ? $in1[7:0] : $in0[7:0]; // 2x1 MUX
 ```
@@ -404,7 +434,6 @@ $out[7:0] = $sel ? $in1[7:0] : $in0[7:0]; // 2x1 MUX
 
 ![image](https://user-images.githubusercontent.com/66086031/170805393-76330955-5761-42a1-9028-a12f692c403c.png)
 
-
 ### Sequential Logic
 
 - Present state depends on past state.
@@ -415,12 +444,11 @@ $out[7:0] = $sel ? $in1[7:0] : $in0[7:0]; // 2x1 MUX
 
 ![image](https://user-images.githubusercontent.com/66086031/170738050-a5720bb2-e3f2-4a5f-8325-0ce05d178959.png)
 
-
 #### Fibonacci Series implmenetation
 
 - Code
 
-```
+```verilog
 $num[31:0] = $reset ? 1 : (>>1$num + >>2$num);
 ```
 
@@ -432,7 +460,7 @@ $num[31:0] = $reset ? 1 : (>>1$num + >>2$num);
 
 - Code
 
-```
+```verilog
 $num[31:0] = $reset ? 0 : (>>1$num + 1);
 ```
 
@@ -472,7 +500,6 @@ $num[31:0] = $reset ? 0 : (>>1$num + 1);
 
 ![image](https://user-images.githubusercontent.com/66086031/170805338-84ef90c0-2278-475d-9141-648275c25a87.png)
 
-
 ### Pipelined Logic
 
 #### Intro to Pipelining and Re - timing
@@ -484,6 +511,7 @@ $num[31:0] = $reset ? 0 : (>>1$num + 1);
 - It increases system response time, as we don't need to wait till the entire instruction is executed.
 
 ##### Re-timing
+
 - We can move the flip flops to achieve equal delays in each stage.
 
 ![image](https://user-images.githubusercontent.com/66086031/170761089-83265297-655f-4ece-b44d-307b9a00883c.png)
@@ -495,12 +523,11 @@ $num[31:0] = $reset ? 0 : (>>1$num + 1);
 
 - Max. frequency of the clock, depends on the propagation delay between flip flops.
 - By inserting more flip flops, the propagation delay reduces
-- It increases the throughtout 
+- It increases the throughtout
 
 #### Pipelined fibo series implementation
 
 ![image](https://user-images.githubusercontent.com/66086031/170804662-332066da-2314-432f-a7c8-993f8002f630.png)
-
 
 - Everything in TL-Verilog is implicitly pipelined.
 - This fibo implementation is equivalent to the earlier implementation.
@@ -509,6 +536,7 @@ $num[31:0] = $reset ? 0 : (>>1$num + 1);
 #### Error Conditions within Computation Pipeline
 
 - Code
+
 ```verilog
    $reset = *reset;
 
@@ -524,32 +552,33 @@ $num[31:0] = $reset ? 0 : (>>1$num + 1);
 ```
 
 - Output Waveform
+  
 ![image](https://user-images.githubusercontent.com/66086031/170805061-8c3628af-8428-4768-b38d-7c39f8fc6403.png)
 
 #### 2-Cycle Calculator
 
 i. First we shall include the counter and calculator in the first stage.
 
-![image](https://user-images.githubusercontent.com/66086031/170805921-c02e3b01-9e6b-4806-9eb4-0d920693a85b.png)
+<!-- ![image](https://user-images.githubusercontent.com/66086031/170805921-c02e3b01-9e6b-4806-9eb4-0d920693a85b.png) -->
 
 ii. Change alignment of $out to have two cycle latency
 
-![image](https://user-images.githubusercontent.com/66086031/170805904-76cddf80-1a48-4529-ad04-4a3bea9b055b.png)
+<!-- ![image](https://user-images.githubusercontent.com/66086031/170805904-76cddf80-1a48-4529-ad04-4a3bea9b055b.png) -->
 
 iii. Change counter to 1 - bit
 
-![image](https://user-images.githubusercontent.com/66086031/170805963-32571460-1a63-4a54-b80c-9e3add4bbf64.png)
+<!-- ![image](https://user-images.githubusercontent.com/66086031/170805963-32571460-1a63-4a54-b80c-9e3add4bbf64.png) -->
 
 iv. Use the counter as valid signal. The output gets the Mux output every two clock cycles.
 
-![image](https://user-images.githubusercontent.com/66086031/170806478-e24ddcf8-2be7-4092-a7f2-4f9b81717024.png)
+<!-- ![image](https://user-images.githubusercontent.com/66086031/170806478-e24ddcf8-2be7-4092-a7f2-4f9b81717024.png) -->
 
 v. Now we re-time(move the mux) to second stage. The output gets the Mux output every other clock cycle.
 
 ![image](https://user-images.githubusercontent.com/66086031/170807210-4cd0d74e-b1f3-4409-8b46-2b173ace0b73.png)
 
-
 - Code
+
 ```verilog
    |calc
       @0
@@ -617,7 +646,6 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 ![image](https://user-images.githubusercontent.com/66086031/170811056-8c65762e-d713-4da5-89c0-3464dcaa418e.png)
 
-
 #### 2-cycle Calculator with Validity
 
 - In this implementation, the computation is carried out, only when the validity is enabled.
@@ -654,7 +682,6 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 - Output Waveform
 
 ![image](https://user-images.githubusercontent.com/66086031/170811957-316e4e4e-132c-419b-9f04-ea148d822add.png)
-
 
 #### Calculator single-value Memory
 
@@ -708,6 +735,3 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 ![image](https://user-images.githubusercontent.com/66086031/170814637-3104816f-c573-4987-96e2-e25865b7cac9.png)
 
 - It take 2 cycles to write.
-
-
-
