@@ -756,6 +756,18 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 ![image](https://user-images.githubusercontent.com/66086031/170815832-646673e6-3556-47c4-a7fb-2224ffa03b6d.png)
 
+#### Program Counter Implementation
+
+```verilog
+   |cpu
+      @0
+         $reset = *reset;      
+         $pc[31:0] = (>>1$reset) ? 32'b0 : >>1$pc + 32'd4;
+```
+
+![image](https://user-images.githubusercontent.com/66086031/170817110-78f9b0b9-10d1-4d76-a75a-61e64485d001.png)
+
+#### Fetch
 
 ### Fetch and Decode
 
