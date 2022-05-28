@@ -853,6 +853,11 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 ![image](https://user-images.githubusercontent.com/66086031/170826837-188d218c-33cd-4a3d-a47d-c03479e1acd9.png)
 
+#### Branch Decisions
+
+- We take a branch only if it is branch instruction and condition is true.
+
+![image](https://user-images.githubusercontent.com/66086031/170828036-ddae9969-83bd-4bb3-80ae-bcef83e90581.png)
 
 
 
