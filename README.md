@@ -574,3 +574,31 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
                      ($op[1:0] == 2'b10) ? $prod :
                      ($op[1:0] == 2'b11) ? $quot : 32'b0;
 ```
+
+### Validity
+
+#### Intro to validity
+
+- Validity checks can be included in the design
+- It is helpful in better debugging
+- Leads to cleaner design
+
+##### Clock Gating
+
+- Toggling of the clock consumes lot of power
+- Clock gating avoids toggling for invalid inputs
+
+#### Lab on validity
+
+
+
+#### Computing total distance
+
+
+
+#### 2-cycle Calculator with Validity
+
+
+
+#### Calculator single-value Memory
+
