@@ -833,3 +833,12 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 
 ### Control Logic
+
+#### Register File Read
+
+- When rs1, rs2 needed we can enable register read and provide the location of the source regsiters.
+- By checking r-type and i-type we can check whether this is correct.
+
+![image](https://user-images.githubusercontent.com/66086031/170825842-9eeb89a9-aec7-45ba-a495-72c657108db4.png)
+
+
