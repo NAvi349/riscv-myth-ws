@@ -535,7 +535,8 @@ i. First we shall include the counter and calculator in the first stage.
 
 ii. Change alignment of $out to have two cycle latency
 
-![Uploading image.png…]()
+![image](https://user-images.githubusercontent.com/66086031/170805904-76cddf80-1a48-4529-ad04-4a3bea9b055b.png)
+
 
 
 
