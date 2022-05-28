@@ -4,7 +4,6 @@
   - [Day 1 Introduction to RISC - V ISA and GNU compiler toolchain](#day-1-introduction-to-risc---v-isa-and-gnu-compiler-toolchain)
     - [RISC - V ISA](#risc---v-isa)
       - [Intro to ISA](#intro-to-isa)
-      - [From Apps to Hardware](#from-apps-to-hardware)
       - [Types of instruction](#types-of-instruction)
     - [Lab for software toolchain](#lab-for-software-toolchain)
       - [C Program to compute Sum from 1 to N](#c-program-to-compute-sum-from-1-to-n)
@@ -19,7 +18,7 @@
       - [64-bit Number system](#64-bit-number-system)
       - [Signed number representation](#signed-number-representation)
       - [Lab for signed and unsigned magnitude](#lab-for-signed-and-unsigned-magnitude)
-  - [Day 2 - Application Binary Interface and verification flow](#day-2---application-binary-interface-and-verification-flow)
+  - [Day 2 - Application Binary Interface and Verification flow](#day-2---application-binary-interface-and-verification-flow)
     - [Application Binary Interface (ABI)](#application-binary-interface-abi)
       - [Intro to ABI](#intro-to-abi)
       - [Memory Allocation for double words](#memory-allocation-for-double-words)
@@ -34,8 +33,6 @@
     - [Passing the C program as a HEX file](#passing-the-c-program-as-a-hex-file)
   - [Day 3 - Digital Logic with TL-Verilog and Makerchip](#day-3---digital-logic-with-tl-verilog-and-makerchip)
     - [Combinational Logic](#combinational-logic)
-      - [Basic logic gates](#basic-logic-gates)
-      - [Mux](#mux)
       - [Labs using Makerchip](#labs-using-makerchip)
         - [Pipelined Pythagorean Example](#pipelined-pythagorean-example)
         - [Basic Logic Gates Example](#basic-logic-gates-example)
@@ -60,6 +57,25 @@
       - [Lab on validity and computing total distance](#lab-on-validity-and-computing-total-distance)
       - [2-cycle Calculator with Validity](#2-cycle-calculator-with-validity)
       - [Calculator single-value Memory](#calculator-single-value-memory)
+  - [Day 4 Micro-architecture of a Single Cycle RISC - V Core](#day-4-micro-architecture-of-a-single-cycle-risc---v-core)
+    - [Intro to Microarchitecture](#intro-to-microarchitecture)
+      - [Micro-architecture](#micro-architecture)
+      - [Basic Instruction-Execution Cycle](#basic-instruction-execution-cycle)
+    - [Fetch and Decode](#fetch-and-decode)
+      - [Program Counter Implementation](#program-counter-implementation)
+      - [Fetch Stage Implementation](#fetch-stage-implementation)
+      - [Decoding instruction type](#decoding-instruction-type)
+      - [Immediate Decode](#immediate-decode)
+      - [Instruction Decode](#instruction-decode)
+      - [Validity in Instruction decode](#validity-in-instruction-decode)
+      - [Determining individual instruction](#determining-individual-instruction)
+    - [Control Logic](#control-logic)
+      - [Register File Read](#register-file-read)
+      - [ALU Decoder](#alu-decoder)
+      - [Register File Write](#register-file-write)
+      - [Branch Decisions](#branch-decisions)
+      - [Branch to Target](#branch-to-target)
+    - [Verification](#verification)
 
 ## Day 1 Introduction to RISC - V ISA and GNU compiler toolchain
 
@@ -67,24 +83,19 @@
 
 #### Intro to ISA
 
-#### From Apps to Hardware
+- ISA describes the operations supported by a particular specification.
 
-![image](https://user-images.githubusercontent.com/66086031/170155862-83e9b749-9fd6-4593-a5f5-060e611b821c.png)
-
-![image](https://user-images.githubusercontent.com/66086031/170156160-42bde070-abf6-40fa-9129-90990ed01bf2.png)
 
 #### Types of instruction
 
-![image](https://user-images.githubusercontent.com/66086031/170157205-900b1cd7-273c-41f3-a71a-00f73292c588.png)
+- Pseudo Instructions - Move instructions
+- RV64I - Integer
+- RV64M _ Multiply
+- RV64F, RV64D - Floating Point, Double Floating Point
+- RV64-IMFD - All of the above
 
-- Pseudo Instructions
-- RV64I
-- RV64M
-- RV64F, RV64D
-- RV64-IMFD
+Application Binary Interface - System calls through which the programmers can access the registers of the RISC - V Core.
 
-Application Binary Interface - System calls through which the programmers can access the registers of the RISC - V Core
-Memory allocation and stack pointer
 
 ### Lab for software toolchain
 
@@ -131,7 +142,7 @@ riscv64-unknown-elf-objdump -d sumofn.o | less
 
 ![image](https://user-images.githubusercontent.com/66086031/170161243-eb52b474-a49d-43e7-abc4-b37fab131010.png)
 
-Number of instructions =
+Number of instructions = $(101ac-10184)/4 + 1 = 11$ instructions
 
 ##### Fast
 
@@ -177,8 +188,6 @@ reg 0 a0
 
 - Here the value of the immediate 0x00021000 is loaded into the r0 register
 
-![image](https://user-images.githubusercontent.com/66086031/170257176-ff9c6f18-6356-4e15-b3bf-1aeb1f266499.png)
-
 ![image](https://user-images.githubusercontent.com/66086031/170257627-b4aa36c4-b1bd-49fd-9601-6a485d12a483.png)
 
 - Here the value of stack pointer is decreased by -10 in hex.
@@ -191,17 +200,15 @@ reg 0 a0
 - 4 bytes => 1 word
 - 8 bytes => 2 words
 
-number of combinations using n bits => $2^n$
+Number of combinations using n bits => $2^n$
 
-![image](https://user-images.githubusercontent.com/66086031/170261974-557d798d-9f79-4484-9f3d-a4d831c9d5ce.png)
-
-Highest number represented by 64-bit system => $(2^64) - 1$
+Highest number represented by 64-bit system => (2^64) - 1
 
 #### Signed number representation
 
 #### Lab for signed and unsigned magnitude
 
-## Day 2 - Application Binary Interface and verification flow
+## Day 2 - Application Binary Interface and Verification flow
 
 ### Application Binary Interface (ABI)
 
@@ -233,13 +240,9 @@ A -->|ABI| RISC-V-Core
 
 #### Load, Add and Store instructions
 
-![image](https://user-images.githubusercontent.com/66086031/170492880-2ef99afb-8015-4c07-8dc4-bfab27c1540c.png)
-
-![image](https://user-images.githubusercontent.com/66086031/170493000-b7f224c5-e685-4a92-9b79-20ea367c1745.png)
-
-![image](https://user-images.githubusercontent.com/66086031/170493204-b63292f6-2e10-420d-b5dc-cb54fd3e1846.png)
-
-![image](https://user-images.githubusercontent.com/66086031/170493491-a7b70b35-fe83-439d-979c-0bedc71edf81.png)
+- Load - ld x8, 16(x23) - loads Memory[16+x23] into x8
+- Add - x8, x24, x8
+- Store - x8, 8(x23) - Store cotent of x8 into Memory[x23+8]
 
 #### RV64I registers and their ABI Names
 
@@ -250,7 +253,7 @@ A -->|ABI| RISC-V-Core
 - $rd$ is of size 5 bits => So $2^5 = 32$ registers
 - Naming convention is $x0$ to $x31$
 
-![image](https://user-images.githubusercontent.com/66086031/170494227-79438b1a-17ec-41e5-9ea8-dce2746424e2.png)
+<!-- ![image](https://user-images.githubusercontent.com/66086031/170494227-79438b1a-17ec-41e5-9ea8-dce2746424e2.png) -->
 
 ### Labs using ABI function call
 
@@ -347,9 +350,8 @@ chmod 377 rv32im.sh
 
 ### Combinational Logic
 
-#### Basic logic gates
-
-#### Mux
+- Output depends only on the present input.
+- No state is associated and no memory elements.
 
 #### Labs using Makerchip
 
@@ -514,11 +516,6 @@ $num[31:0] = $reset ? 0 : (>>1$num + 1);
 
 - We can move the flip flops to achieve equal delays in each stage.
 
-![image](https://user-images.githubusercontent.com/66086031/170761089-83265297-655f-4ece-b44d-307b9a00883c.png)
-![image](https://user-images.githubusercontent.com/66086031/170761749-e1d92e0d-b693-45d9-b593-a7315f4dd0c2.png)
-
-![image](https://user-images.githubusercontent.com/66086031/170762391-6d26bad5-b927-4518-ba0e-28d1a46f3933.png)
-
 #### Benefits of pipelining
 
 - Max. frequency of the clock, depends on the propagation delay between flip flops.
@@ -527,7 +524,9 @@ $num[31:0] = $reset ? 0 : (>>1$num + 1);
 
 #### Pipelined fibo series implementation
 
-![image](https://user-images.githubusercontent.com/66086031/170804662-332066da-2314-432f-a7c8-993f8002f630.png)
+- $lower_case: pipe signal
+- $PascalCase: state signal
+- $UPPER_CASE: keyword
 
 - Everything in TL-Verilog is implicitly pipelined.
 - This fibo implementation is equivalent to the earlier implementation.
@@ -621,34 +620,15 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 - In this we compute the pythagorean distance and add it to the previous value.
 
-![image](https://user-images.githubusercontent.com/66086031/170811101-91298979-5402-4f07-b37c-2d84a1167cbb.png)
-
-```verilog
-   |calc
-      @1
-         $reset = *reset;
-      ?$valid
-         @1
-            $aa_sq[31:0] = $aa[3:0] * $aa;
-            $bb_sq[31:0] = $bb[3:0] * $bb;
-
-         @2
-            $cc_sq[31:0] = $aa_sq + $bb_sq;
-         @3
-            $cc[31:0] = sqrt($cc_sq);
-      
-      @4
-         $tot_dist[63:0] =
-               $reset ? 0 :
-               $valid ? >>1$tot_dist + $cc :
-                        >>1$tot_dist;
-```
-
 ![image](https://user-images.githubusercontent.com/66086031/170811056-8c65762e-d713-4da5-89c0-3464dcaa418e.png)
 
 #### 2-cycle Calculator with Validity
 
 - In this implementation, the computation is carried out, only when the validity is enabled.
+
+<details>
+
+   <summary> Code </summary>
 
 ```verilog
    |calc
@@ -679,6 +659,8 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
                         ($op[1:0] == 2'b11) ? $quot : 32'b0;
 ```
 
+</details>
+
 - Output Waveform
 
 ![image](https://user-images.githubusercontent.com/66086031/170811957-316e4e4e-132c-419b-9f04-ea148d822add.png)
@@ -689,11 +671,14 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 - op = 100 => memory read (recall)
 - op = 101 => memory write
 
+<details>
+   <summary> Code </summary>
+
 ```verilog
    |calc
       @0
          $reset = *reset;
-         
+
       @1   
          //$val1[31:0] = $rand1[3:0];
          $val2[31:0] = $rand2[3:0];
@@ -727,6 +712,9 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
                         ($op[2:0] == 3'b011) ? $quot :
                         ($op[2:0] == 3'b100) ? >>2$mem : >>2$tout;
 ```
+
+</details>
+
 
 ![image](https://user-images.githubusercontent.com/66086031/170814317-fb4e759f-5fd3-4b23-b242-932da8f614d3.png)
 
@@ -831,7 +819,6 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 ![image](https://user-images.githubusercontent.com/66086031/170825155-cfba2c7f-09d0-4b14-bb13-9002e52f6ffd.png)
 
-
 ### Control Logic
 
 #### Register File Read
@@ -865,15 +852,16 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 ![image](https://user-images.githubusercontent.com/66086031/170828381-7bd5c7dd-0393-49f3-b1e2-b94d921899b3.png)
 
-#### Verification
+### Verification
 
+```verilog
+*passed = |cpu/xreg[10]>>5$value == (1+2+3+4+5+6+7+8+9);
+```
 - This part took the most amount of time.
 - The design successfully produces the sum!
 
 ![image](https://user-images.githubusercontent.com/66086031/170834175-1c1bbc7c-037e-4dee-bda4-d734b132a1f8.png)
 
-- This the final image for day 4.
+- This is the final image for day 4.
+  
 ![image](https://user-images.githubusercontent.com/66086031/170834377-a68620a9-2004-4c64-a20f-675409c414a2.png)
-
-
-
