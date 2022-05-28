@@ -549,8 +549,28 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 ![image](https://user-images.githubusercontent.com/66086031/170807210-4cd0d74e-b1f3-4409-8b46-2b173ace0b73.png)
 
 
-
 - Code
 ```verilog
+   |calc
+      @0
+         $reset = *reset;
+         
+      @1   
+         //$val1[31:0] = $rand1[3:0];
+         $val2[31:0] = $rand2[3:0];
 
+         $valid = $reset ? 0 : (>>1$valid + 1);
+
+         $sum[31:0] = $out + $val2;  //00
+         $diff[31:0] = $out - $val2; //01
+         $prod[31:0] = $out * $val2; //10
+         $quot[31:0] = $out / $val2; //11   
+         
+         $out[31:0] = ($reset | ~($valid)) ? 0 : >>2$tout;
+         
+      @2
+         $tout[31:0] = ($op[1:0] == 2'b00) ? $sum :
+                     ($op[1:0] == 2'b01) ? $diff :
+                     ($op[1:0] == 2'b10) ? $prod :
+                     ($op[1:0] == 2'b11) ? $quot : 32'b0;
 ```
