@@ -735,3 +735,30 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 ![image](https://user-images.githubusercontent.com/66086031/170814637-3104816f-c573-4987-96e2-e25865b7cac9.png)
 
 - It take 2 cycles to write.
+
+## Day 4 Micro-architecture of a Single Cycle RISC - V Core
+
+### Intro to Microarchitecture
+
+#### Micro-architecture
+
+- A Micro-architecture is an implementation of an ISA.
+- A Single ISA can have multiple Mirco-architectures.
+- We shall implement the below micro-architecture in TL-Verilog
+
+#### Basic Instruction-Execution Cycle
+
+- **Fetch** the Instruction pointed by the PC from the Instruction Memory.
+- **Decode** the the Instruction
+- **Execute** the instruction (ALU)
+- Perform **Memory Access** if needed (Data Memory)
+- **Write Back** the result into the Register File
+
+![image](https://user-images.githubusercontent.com/66086031/170815832-646673e6-3556-47c4-a7fb-2224ffa03b6d.png)
+
+
+### Fetch and Decode
+
+
+
+### Control Logic
