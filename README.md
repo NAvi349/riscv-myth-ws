@@ -795,7 +795,7 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 ![image](https://user-images.githubusercontent.com/66086031/170820753-80fe3a5e-f043-40d9-be36-76253659a47a.png)
 
-#### Decode Stage Implementation
+#### Decoding instruction type
 
 ![image](https://user-images.githubusercontent.com/66086031/170821540-02879643-897f-4873-915c-68f0e2db53eb.png)
 
@@ -863,6 +863,24 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 ![image](https://user-images.githubusercontent.com/66086031/170822409-78c51583-fbe5-4881-a13a-6033bb45b632.png)
 
+#### Instruction Deocde
+
+- Similiary, we can extract other fields of information
+
+![image](https://user-images.githubusercontent.com/66086031/170822721-72dd44a1-23ee-45a3-93c4-0ef32cecf9e2.png)
+
+```verilog
+         // other fields decode
+         
+         $rs2[4:0] = $instr[24:20];
+         $rs1[4:0] = $instr[19:15];
+         $rd[4:0] = $instr[11:7];
+         $funct7[6:0] = $instr[31:25];
+         $opcode[6:0] = $instr[6:0];
+         $funct3[2:0] = $instr[14:12];
+```
+
+![image](https://user-images.githubusercontent.com/66086031/170823049-88b61ad9-7a31-460b-9d0b-66944086f150.png)
 
 
 ### Control Logic
