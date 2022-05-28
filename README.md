@@ -823,7 +823,7 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 ![image](https://user-images.githubusercontent.com/66086031/170824353-995c7c88-bd22-4da5-b29f-af9b2c5c96fb.png)
 
-#### Determining each instruction
+#### Determining individual instruction
 
 - Using funct7, opcode and funct3 decode each type of instruction
 
