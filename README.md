@@ -1,7 +1,7 @@
 # Table of Contents
 
 - [Table of Contents](#table-of-contents)
-  - [Day 1 Introduction to RISC - V ISA and GNU compiler toolchain](#day-1-introduction-to-risc---v-isa-and-gnu-compiler-toolchain)
+  - [Day 1 - Introduction to RISC - V ISA and GNU compiler toolchain](#day-1---introduction-to-risc---v-isa-and-gnu-compiler-toolchain)
     - [RISC - V ISA](#risc---v-isa)
       - [Intro to ISA](#intro-to-isa)
       - [Types of instruction](#types-of-instruction)
@@ -57,7 +57,7 @@
       - [Lab on validity and computing total distance](#lab-on-validity-and-computing-total-distance)
       - [2-cycle Calculator with Validity](#2-cycle-calculator-with-validity)
       - [Calculator single-value Memory](#calculator-single-value-memory)
-  - [Day 4 Micro-architecture of a Single Cycle RISC - V Core](#day-4-micro-architecture-of-a-single-cycle-risc---v-core)
+  - [Day 4 - Micro-architecture of a Single Cycle RISC - V Core](#day-4---micro-architecture-of-a-single-cycle-risc---v-core)
     - [Intro to Microarchitecture](#intro-to-microarchitecture)
       - [Micro-architecture](#micro-architecture)
       - [Basic Instruction-Execution Cycle](#basic-instruction-execution-cycle)
@@ -77,14 +77,13 @@
       - [Branch to Target](#branch-to-target)
     - [Verification](#verification)
 
-## Day 1 Introduction to RISC - V ISA and GNU compiler toolchain
+## Day 1 - Introduction to RISC - V ISA and GNU compiler toolchain
 
 ### RISC - V ISA
 
 #### Intro to ISA
 
 - ISA describes the operations supported by a particular specification.
-
 
 #### Types of instruction
 
@@ -95,7 +94,6 @@
 - RV64-IMFD - All of the above
 
 Application Binary Interface - System calls through which the programmers can access the registers of the RISC - V Core.
-
 
 ### Lab for software toolchain
 
@@ -715,7 +713,6 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 </details>
 
-
 ![image](https://user-images.githubusercontent.com/66086031/170814317-fb4e759f-5fd3-4b23-b242-932da8f614d3.png)
 
 - Here at the 32th clock cycle, we are writing the value ffd into the memory.
@@ -724,7 +721,7 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 - It take 2 cycles to write.
 
-## Day 4 Micro-architecture of a Single Cycle RISC - V Core
+## Day 4 - Micro-architecture of a Single Cycle RISC - V Core
 
 ### Intro to Microarchitecture
 
@@ -857,6 +854,7 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 ```verilog
 *passed = |cpu/xreg[10]>>5$value == (1+2+3+4+5+6+7+8+9);
 ```
+
 - This part took the most amount of time.
 - The design successfully produces the sum!
 
