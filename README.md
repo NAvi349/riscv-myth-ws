@@ -843,5 +843,26 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 ![image](https://user-images.githubusercontent.com/66086031/170821518-35310faf-009b-406f-8ad4-bc0d216d9c89.png)
 
+#### Immediate Decode
+
+![image](https://user-images.githubusercontent.com/66086031/170821724-996fb31e-31f7-4109-9307-297100f9b49b.png)
+
+- Based on the instruction type, we need to form the immediate.
+
+```verilog
+         ...
+         //immediate decode     
+         
+         $imm[31:0] = $is_i_instr ? { {21{$instr[31]}}, $instr[30:20] } :
+                      $is_s_instr ? { {21{$instr[31]}}, $instr[30:25], $instr[11:7] } :
+                      $is_b_instr ? { {20{$instr[31]}}, $instr[7], $instr[30:25], $instr[11:8], 1'b0 } :
+                      $is_u_instr ? { $instr[31:12], 12'b0 } :
+                      $is_j_instr ? { {12{$instr[31]}}, $instr[19:12], $instr[20], $instr[30:21], 1'b0 } :
+                      32'bx; // default value
+```
+
+![image](https://user-images.githubusercontent.com/66086031/170822409-78c51583-fbe5-4881-a13a-6033bb45b632.png)
+
+
 
 ### Control Logic
