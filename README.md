@@ -506,7 +506,7 @@ $num[31:0] = $reset ? 0 : (>>1$num + 1);
 
 - Everything in TL-Verilog is implicitly pipelined.
 - This fibo implementation is equivalent to the earlier implementation.
-- ![image](https://user-images.githubusercontent.com/66086031/170804569-3f40f3cd-6ff8-430b-a5db-be0a2ffd74b4.png)
+![image](https://user-images.githubusercontent.com/66086031/170804569-3f40f3cd-6ff8-430b-a5db-be0a2ffd74b4.png)
 
 - Piplined Stages example
 - Code
@@ -523,5 +523,5 @@ $num[31:0] = $reset ? 0 : (>>1$num + 1);
       @6
          $err3 = $div_by_zero + $err2;   
 ```
-- ![image](https://user-images.githubusercontent.com/66086031/170805061-8c3628af-8428-4768-b38d-7c39f8fc6403.png)
+![image](https://user-images.githubusercontent.com/66086031/170805061-8c3628af-8428-4768-b38d-7c39f8fc6403.png)
 
