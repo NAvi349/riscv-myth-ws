@@ -859,5 +859,10 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 ![image](https://user-images.githubusercontent.com/66086031/170828036-ddae9969-83bd-4bb3-80ae-bcef83e90581.png)
 
+#### Branch to Target
+
+- We modify the PC Mux to take a branch when the previous instruction is a branch instruction (taken branch)
+
+![image](https://user-images.githubusercontent.com/66086031/170828381-7bd5c7dd-0393-49f3-b1e2-b94d921899b3.png)
 
 
