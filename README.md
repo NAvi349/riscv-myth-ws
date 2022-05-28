@@ -865,4 +865,15 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 ![image](https://user-images.githubusercontent.com/66086031/170828381-7bd5c7dd-0393-49f3-b1e2-b94d921899b3.png)
 
+#### Verification
+
+- This part took the most amount of time.
+- The design successfully produces the sum!
+
+![image](https://user-images.githubusercontent.com/66086031/170834175-1c1bbc7c-037e-4dee-bda4-d734b132a1f8.png)
+
+- This the final image for day 4.
+![image](https://user-images.githubusercontent.com/66086031/170834377-a68620a9-2004-4c64-a20f-675409c414a2.png)
+
+
 
