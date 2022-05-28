@@ -382,29 +382,28 @@ $out[7:0] = $sel ? $in1[7:0] : $in0[7:0]; // 2x1 MUX
 - Code
 
 ```verilog
-   |calc
-      @0
-         $reset = *reset;
-         
-         
-         // YOUR CODE HERE
-         $val1[31:0] = $rand1[3:0];
-         $val2[31:0] = $rand2[3:0];
+   $reset = *reset;
 
-         $sum[31:0] = $val1 + $val2;  //00
-         $diff[31:0] = $val1 - $val2; //01
-         $prod[31:0] = $val1 * $val2; //10
-         $quot[31:0] = $val1 / $val2; //11
 
-         $out[31:0] = ($op[1:0] == 2'b00) ? $sum :
-                    ($op[1:0] == 2'b01) ? $diff :
-                    ($op[1:0] == 2'b10) ? $prod :
-                    ($op[1:0] == 2'b11) ? $quot : 32'b0;
+   // YOUR CODE HERE
+   $val1[31:0] = $rand1[3:0];
+   $val2[31:0] = $rand2[3:0];
+
+   $sum[31:0] = $val1 + $val2;  //00
+   $diff[31:0] = $val1 - $val2; //01
+   $prod[31:0] = $val1 * $val2; //10
+   $quot[31:0] = $val1 / $val2; //11
+
+   $out[31:0] = ($op[1:0] == 2'b00) ? $sum :
+               ($op[1:0] == 2'b01) ? $diff :
+               ($op[1:0] == 2'b10) ? $prod :
+               ($op[1:0] == 2'b11) ? $quot : 32'b0;
 ```
 
 - Output Waveform
 
-![image](https://user-images.githubusercontent.com/66086031/170804267-1a2203a9-2520-4ab2-b5c3-c97ee5d2c8da.png)
+![image](https://user-images.githubusercontent.com/66086031/170805393-76330955-5761-42a1-9028-a12f692c403c.png)
+
 
 ### Sequential Logic
 
@@ -448,32 +447,31 @@ $num[31:0] = $reset ? 0 : (>>1$num + 1);
 - Code
 
 ```verilog
-   |calc
-      @0
-         $reset = *reset;
-         
-         
-         //$val1[31:0] = $rand1[3:0];
-         $val2[31:0] = $rand2[3:0];
+   $reset = *reset;
 
-         //$num[31:0] = $reset ? 0 : (>>1$num + 1);
 
-         $sum[31:0] = $out + $val2;  //00
-         $diff[31:0] = $out - $val2; //01
-         $prod[31:0] = $out * $val2; //10
-         $quot[31:0] = $out / $val2; //11
+   //$val1[31:0] = $rand1[3:0];
+   $val2[31:0] = $rand2[3:0];
 
-         $tout[31:0] = ($op[1:0] == 2'b00) ? $sum :
-                     ($op[1:0] == 2'b01) ? $diff :
-                     ($op[1:0] == 2'b10) ? $prod :
-                     ($op[1:0] == 2'b11) ? $quot : 32'b0;
+   //$num[31:0] = $reset ? 0 : (>>1$num + 1);
 
-         $out[31:0] = $reset ? 0 : >>1$tout;
+   $sum[31:0] = $out + $val2;  //00
+   $diff[31:0] = $out - $val2; //01
+   $prod[31:0] = $out * $val2; //10
+   $quot[31:0] = $out / $val2; //11
+
+   $tout[31:0] = ($op[1:0] == 2'b00) ? $sum :
+                  ($op[1:0] == 2'b01) ? $diff :
+                  ($op[1:0] == 2'b10) ? $prod :
+                  ($op[1:0] == 2'b11) ? $quot : 32'b0;
+
+   $out[31:0] = $reset ? 0 : >>1$tout;
 ```
 
 - Output Waveform
 
-![image](https://user-images.githubusercontent.com/66086031/170804081-36c918a2-15ee-445e-825b-b0327314563c.png)
+![image](https://user-images.githubusercontent.com/66086031/170805338-84ef90c0-2278-475d-9141-648275c25a87.png)
+
 
 ### Pipelined Logic
 
@@ -508,7 +506,8 @@ $num[31:0] = $reset ? 0 : (>>1$num + 1);
 - This fibo implementation is equivalent to the earlier implementation.
 ![image](https://user-images.githubusercontent.com/66086031/170804569-3f40f3cd-6ff8-430b-a5db-be0a2ffd74b4.png)
 
-- Piplined Stages example
+#### Error Conditions within Computation Pipeline
+
 - Code
 ```verilog
    $reset = *reset;
@@ -523,5 +522,16 @@ $num[31:0] = $reset ? 0 : (>>1$num + 1);
       @6
          $err3 = $div_by_zero + $err2;   
 ```
+
+- Output Waveform
 ![image](https://user-images.githubusercontent.com/66086031/170805061-8c3628af-8428-4768-b38d-7c39f8fc6403.png)
+
+#### 2-Cycle Calculator
+
+- Code
+```verilog
+
+```
+
+- Output Waveform
 
