@@ -855,7 +855,6 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 *passed = |cpu/xreg[10]>>5$value == (1+2+3+4+5+6+7+8+9);
 ```
 
-- This part took the most amount of time.
 - The design successfully produces the sum!
 
 ![image](https://user-images.githubusercontent.com/66086031/170834175-1c1bbc7c-037e-4dee-bda4-d734b132a1f8.png)
