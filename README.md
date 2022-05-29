@@ -951,5 +951,9 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 ![image](https://user-images.githubusercontent.com/66086031/170855681-3cf2acf7-2b49-4030-97f8-3b1f02c90221.png)
 
+#### Testing Loads/Stores
 
+![image](https://user-images.githubusercontent.com/66086031/170855895-cf9a4eb8-059e-467d-b9d4-1ec2c1f3f710.png)
+
+- The test is successfully passed.
 
