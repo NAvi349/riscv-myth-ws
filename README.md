@@ -907,6 +907,11 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 ![image](https://user-images.githubusercontent.com/66086031/170847924-80db50f1-5d40-484c-9498-ce7958332035.png)
 
+- Instead of executing the instructions one by one, we can divide the combinational circuit.
+- We can overlap the execution of one instruction with the earlier stage of another instruction.
+- It is a analogous to a queue or a waterfall.
+- This is also known as temporal parallelism.
+
 ### Pipelining the CPU
 
 #### 3 - Cycle Valid Signal
