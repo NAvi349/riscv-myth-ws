@@ -942,7 +942,8 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 - When there is valid load two cycles ago, we can enable the write pin for the register
 - We also add a Mux for selecting between load and ALU Writes
 
-![image](https://user-images.githubusercontent.com/66086031/170854951-08bbab9b-7c71-4ad6-940f-f7308df63fcd.png)
+![image](https://user-images.githubusercontent.com/66086031/170855000-40c5b079-ff3b-48d3-9299-6025f27338ef.png)
+
 
 
 
