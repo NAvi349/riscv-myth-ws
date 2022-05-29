@@ -886,6 +886,10 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 - But it takes 100 clock cycles
 
+#### Re-Timing
+
+![image](https://user-images.githubusercontent.com/66086031/170851116-7bebca9a-8ec8-484f-beec-ad78f180a0b1.png)
+
 
 
 
