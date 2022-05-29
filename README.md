@@ -890,6 +890,14 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 ![image](https://user-images.githubusercontent.com/66086031/170851116-7bebca9a-8ec8-484f-beec-ad78f180a0b1.png)
 
+### Solving Hazards
+
+#### RAW Hazard
+- If Source register is equal to destination register of previous instruction, use bypass
+
+![image](https://user-images.githubusercontent.com/66086031/170851407-9562b858-8088-492c-8d15-7bd403e08737.png)
+
+
 
 
 
