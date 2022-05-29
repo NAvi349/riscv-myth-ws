@@ -965,3 +965,10 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 ![image](https://user-images.githubusercontent.com/66086031/170856795-b78cffdf-52e7-452c-9d6b-72258a655c6c.png)
 
+#### Final Work
+
+- Thus a Five Stage Pipelined RISC - V Core of RV64I is successfully designed and verified.
+
+![image](https://user-images.githubusercontent.com/66086031/170856984-ed7ffa8b-3a12-4c65-baa9-d9ca4c38a384.png)
+
+
