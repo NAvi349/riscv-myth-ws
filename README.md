@@ -862,3 +862,30 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 - This is the final image for day 4.
   
 ![image](https://user-images.githubusercontent.com/66086031/170834377-a68620a9-2004-4c64-a20f-675409c414a2.png)
+
+## Day 4
+
+### Intro to Pipelining
+![image](https://user-images.githubusercontent.com/66086031/170847924-80db50f1-5d40-484c-9498-ce7958332035.png)
+
+### Pipelining the CPU
+
+#### 3 - Cycle Valid Signal
+- We insert a new instruction every third cycle to avoid hazards
+
+![image](https://user-images.githubusercontent.com/66086031/170848439-466b0c08-5668-4fb5-9eeb-34915fdcf0c8.png)
+
+#### Invalid Instructions
+- Discard invalid instructions
+
+![image](https://user-images.githubusercontent.com/66086031/170848532-5f75cc04-ed3d-430a-b31f-aa47f3c9f5e9.png)
+
+![image](https://user-images.githubusercontent.com/66086031/170848664-7bbdce9f-4aef-46e8-923e-16c225ce0e48.png)
+
+![image](https://user-images.githubusercontent.com/66086031/170849445-964de4ac-0786-4434-b902-c5c9c4448dec.png)
+
+- But it takes 100 clock cycles
+
+
+
+
