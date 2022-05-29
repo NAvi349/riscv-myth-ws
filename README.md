@@ -925,5 +925,24 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 ![image](https://user-images.githubusercontent.com/66086031/170853363-c5c3c0e0-447a-4741-99bf-53e54fa15ae0.png)
 
+### Loads/Stores
+
+#### Implementing loads and Redirecting
+
+- Load - Loading from Data Memory into the Register file
+
+![image](https://user-images.githubusercontent.com/66086031/170853616-98e88e13-0754-4cd3-b7e5-323100609d57.png)
+
+- We have to wait till the end of execute stage to obtain the valid load data.
+- So, we have to flush the next two instructions
+- We then forward the result.
+
+#### Valid Loads
+
+- When there is valid load two cycles ago, we can enable the write pin for the register
+- We also add a Mux for selecting between load and ALU Writes
+
+![image](https://user-images.githubusercontent.com/66086031/170854951-08bbab9b-7c71-4ad6-940f-f7308df63fcd.png)
+
 
 
