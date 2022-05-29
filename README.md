@@ -957,3 +957,11 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 - The test is successfully passed.
 
+#### Jumps
+
+- Jumps are unconditional branches
+- JAL => jump to PC + imm
+- JALR => src1 + imm
+
+![image](https://user-images.githubusercontent.com/66086031/170856795-b78cffdf-52e7-452c-9d6b-72258a655c6c.png)
+
