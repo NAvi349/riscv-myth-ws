@@ -220,9 +220,24 @@ Number of combinations using n bits => $2^n$
 
 Highest number represented by 64-bit system => (2^64) - 1
 
-#### Signed number representation
+#### 2's Complement representation
+
+- Take 1's complement and then add +1.
+- MSB indicates sign
+- MSB = 0 indicates Positive Numbers
+- MSB = 1 indicates Negative Numbers
+- Range 0 to 2^63 
+- Range -1 to -2^63
 
 #### Lab for signed and unsigned magnitude
+
+- Highest unsigned long long number is $18446744073709551615$.
+![image](https://user-images.githubusercontent.com/66086031/170858162-cbb960a9-7e66-4f33-90fd-a94169961864.png)
+
+- Signed Numbers Max and Min
+![image](https://user-images.githubusercontent.com/66086031/170858434-53763d82-387a-46b5-bf18-2c34b14d3c73.png)
+
+long long int occupies 8 bytes = $8 * 8 = 64 bits$
 
 ## Day 2 - Application Binary Interface and Verification flow
 
