@@ -917,7 +917,13 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 ![image](https://user-images.githubusercontent.com/66086031/170852683-83469b28-01c2-4f26-a0b6-a224de3a5feb.png)
 
+#### Complete ALU
 
+- We implement the remaining two instructions
+- 
+![image](https://user-images.githubusercontent.com/66086031/170853367-72b134d5-a838-487d-9302-dec65edd4435.png)
+
+![image](https://user-images.githubusercontent.com/66086031/170853363-c5c3c0e0-447a-4741-99bf-53e54fa15ae0.png)
 
 
 
