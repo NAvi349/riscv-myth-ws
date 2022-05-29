@@ -897,6 +897,19 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 ![image](https://user-images.githubusercontent.com/66086031/170851407-9562b858-8088-492c-8d15-7bd403e08737.png)
 
+#### Branch Hazards
+
+![image](https://user-images.githubusercontent.com/66086031/170852274-e03e1827-ff0c-4fc6-91b6-a8d6b0bc60c1.png)
+
+- We have wait till @3 stage (4th Stage), to tell whether branch is taken or not.
+- We can use a branch predictor but it is difficult to implement.
+- So, we will not allow the next two instructions to write to register file whenever branch is detected
+
+![image](https://user-images.githubusercontent.com/66086031/170852206-ab63b9c1-8e78-4b60-8b40-1d2d2dcc7273.png)
+
+![image](https://user-images.githubusercontent.com/66086031/170852213-4ea52124-f9f0-4444-a9f3-41e8a1ac30b2.png)
+
+
 
 
 
