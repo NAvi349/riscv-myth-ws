@@ -1,3 +1,5 @@
+![image](https://user-images.githubusercontent.com/66086031/170859580-f1ab7aa9-5c02-4a6b-ac74-4322c3972bb1.png)
+
 # Table of Contents
 
 - [Table of Contents](#table-of-contents)
@@ -16,7 +18,7 @@
         - [Debugging](#debugging)
     - [Number systems](#number-systems)
       - [64-bit Number system](#64-bit-number-system)
-      - [Signed number representation](#signed-number-representation)
+      - [2's Complement representation](#2s-complement-representation)
       - [Lab for signed and unsigned magnitude](#lab-for-signed-and-unsigned-magnitude)
   - [Day 2 - Application Binary Interface and Verification flow](#day-2---application-binary-interface-and-verification-flow)
     - [Application Binary Interface (ABI)](#application-binary-interface-abi)
@@ -94,6 +96,7 @@
       - [Testing Loads/Stores](#testing-loadsstores)
       - [Jumps](#jumps)
       - [Final Work](#final-work)
+  - [Acknowledgements](#acknowledgements)
 
 ## Day 1 - Introduction to RISC - V ISA and GNU compiler toolchain
 
@@ -226,7 +229,7 @@ Highest number represented by 64-bit system => (2^64) - 1
 - MSB indicates sign
 - MSB = 0 indicates Positive Numbers
 - MSB = 1 indicates Negative Numbers
-- Range 0 to 2^63 
+- Range 0 to 2^63
 - Range -1 to -2^63
 
 #### Lab for signed and unsigned magnitude
@@ -1007,3 +1010,13 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 - Thus a Five Stage Pipelined RISC - V Core of RV64I is successfully designed and verified.
 
 ![image](https://user-images.githubusercontent.com/66086031/170856984-ed7ffa8b-3a12-4c65-baa9-d9ca4c38a384.png)
+
+## Acknowledgements
+
+[1] Kunal Ghosh - Founder, VSD
+
+[2] Steve Hoover - Founder, RedWood EDA
+
+[3] Shon Taware - Teaching Assistant, VSD
+
+[4] VSD Team
