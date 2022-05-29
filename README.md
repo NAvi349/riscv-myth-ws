@@ -76,6 +76,24 @@
       - [Branch Decisions](#branch-decisions)
       - [Branch to Target](#branch-to-target)
     - [Verification](#verification)
+  - [Day 5 - Pipelined RISC-V Core](#day-5---pipelined-risc-v-core)
+    - [Intro to Pipelining](#intro-to-pipelining)
+    - [Pipelining the CPU](#pipelining-the-cpu)
+      - [3 - Cycle Valid Signal](#3---cycle-valid-signal)
+      - [Invalid Instructions](#invalid-instructions)
+      - [Re-Timing](#re-timing-1)
+    - [Solving Hazards](#solving-hazards)
+      - [RAW Hazard](#raw-hazard)
+      - [Branch Hazards](#branch-hazards)
+      - [Remaining Instruction Decode](#remaining-instruction-decode)
+      - [Complete ALU](#complete-alu)
+    - [Loads/Stores](#loadsstores)
+      - [Implementing loads and Redirecting](#implementing-loads-and-redirecting)
+      - [Valid Loads](#valid-loads)
+      - [Instantiate Data Memory](#instantiate-data-memory)
+      - [Testing Loads/Stores](#testing-loadsstores)
+      - [Jumps](#jumps)
+      - [Final Work](#final-work)
 
 ## Day 1 - Introduction to RISC - V ISA and GNU compiler toolchain
 
@@ -863,22 +881,24 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
   
 ![image](https://user-images.githubusercontent.com/66086031/170834377-a68620a9-2004-4c64-a20f-675409c414a2.png)
 
-## Day 4
+## Day 5 - Pipelined RISC-V Core
 
 ### Intro to Pipelining
+
 ![image](https://user-images.githubusercontent.com/66086031/170847924-80db50f1-5d40-484c-9498-ce7958332035.png)
 
 ### Pipelining the CPU
 
 #### 3 - Cycle Valid Signal
+
 - We insert a new instruction every third cycle to avoid hazards
 
 ![image](https://user-images.githubusercontent.com/66086031/170848439-466b0c08-5668-4fb5-9eeb-34915fdcf0c8.png)
 
 #### Invalid Instructions
-- Discard invalid instructions
 
-![image](https://user-images.githubusercontent.com/66086031/170848532-5f75cc04-ed3d-430a-b31f-aa47f3c9f5e9.png)
+- Avoid writing RF for invalid instructions
+- Avoid redirecting PC for invalid intructions
 
 ![image](https://user-images.githubusercontent.com/66086031/170848664-7bbdce9f-4aef-46e8-923e-16c225ce0e48.png)
 
@@ -893,6 +913,7 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 ### Solving Hazards
 
 #### RAW Hazard
+
 - If Source register is equal to destination register of previous instruction, use bypass
 
 ![image](https://user-images.githubusercontent.com/66086031/170851407-9562b858-8088-492c-8d15-7bd403e08737.png)
@@ -901,7 +922,7 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 ![image](https://user-images.githubusercontent.com/66086031/170852274-e03e1827-ff0c-4fc6-91b6-a8d6b0bc60c1.png)
 
-- We have wait till @3 stage (4th Stage), to tell whether branch is taken or not.
+- We have wait to till @3 stage (4th Stage), to tell whether branch is taken or not.
 - We can use a branch predictor but it is difficult to implement.
 - So, we will not allow the next two instructions to write to register file whenever branch is detected
 
@@ -914,13 +935,12 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 - We consider all loads as same for simplicity.
 ![image](https://user-images.githubusercontent.com/66086031/170852688-b08f30ec-8248-4d5d-9c83-22c2e61e3d92.png)
 
-
 ![image](https://user-images.githubusercontent.com/66086031/170852683-83469b28-01c2-4f26-a0b6-a224de3a5feb.png)
 
 #### Complete ALU
 
 - We implement the remaining two instructions
-- 
+
 ![image](https://user-images.githubusercontent.com/66086031/170853367-72b134d5-a838-487d-9302-dec65edd4435.png)
 
 ![image](https://user-images.githubusercontent.com/66086031/170853363-c5c3c0e0-447a-4741-99bf-53e54fa15ae0.png)
@@ -970,5 +990,3 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 - Thus a Five Stage Pipelined RISC - V Core of RV64I is successfully designed and verified.
 
 ![image](https://user-images.githubusercontent.com/66086031/170856984-ed7ffa8b-3a12-4c65-baa9-d9ca4c38a384.png)
-
-
