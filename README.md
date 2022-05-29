@@ -944,6 +944,12 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 ![image](https://user-images.githubusercontent.com/66086031/170855000-40c5b079-ff3b-48d3-9299-6025f27338ef.png)
 
+#### Instantiate Data Memory
+
+- Now uncomment macro of data memory
+- Connect the interface signals
+
+![image](https://user-images.githubusercontent.com/66086031/170855681-3cf2acf7-2b49-4030-97f8-3b1f02c90221.png)
 
 
 
