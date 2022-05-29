@@ -909,6 +909,13 @@ v. Now we re-time(move the mux) to second stage. The output gets the Mux output 
 
 ![image](https://user-images.githubusercontent.com/66086031/170852213-4ea52124-f9f0-4444-a9f3-41e8a1ac30b2.png)
 
+#### Remaining Instruction Decode
+
+- We consider all loads as same for simplicity.
+![image](https://user-images.githubusercontent.com/66086031/170852688-b08f30ec-8248-4d5d-9c83-22c2e61e3d92.png)
+
+
+![image](https://user-images.githubusercontent.com/66086031/170852683-83469b28-01c2-4f26-a0b6-a224de3a5feb.png)
 
 
 
