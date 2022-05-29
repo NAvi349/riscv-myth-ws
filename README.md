@@ -105,6 +105,8 @@
 #### Intro to ISA
 
 - ISA describes the operations supported by a particular specification.
+- RISC - V is an open-source ISA Standard.
+- So, anyone can develop their own processor free from licensing fees.
 
 #### Types of instruction
 
