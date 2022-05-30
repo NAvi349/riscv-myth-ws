@@ -55,7 +55,7 @@
          
          // First attempt at solving hazards
          // Insert a new instruction at every third cycle
-         $start = ~($reset) && >>1$reset;
+         //$start = ~($reset) && >>1$reset;
          //$valid = $reset ? 0 : $start ? 1 : >>3$valid;
          
          
@@ -294,7 +294,7 @@
          $valid_jump = $is_jump && $valid;
          
          $valid = ~( >>1$valid_taken_br || >>2$valid_taken_br || >>1$valid_load ||
-                     >>2$valid_load || >>1$$valid_jump || >>2$valid_jump);
+                     >>2$valid_load || >>1$valid_jump || >>2$valid_jump);
          // Jump Address
                   
          $jalr_tgt_pc[31:0] = $src1_value + $imm;
